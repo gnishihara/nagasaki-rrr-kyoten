@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources: 
+    - /data
 
 website:
   title: "水産海洋データ解析演習I・II"
@@ -22,6 +24,12 @@ website:
       - section: "tidyverse"
         contents:
           - tidyverse/01-about.qmd
+          - tidyverse/10-dplyr.qmd
+          - tidyverse/20-dplyr.qmd
+          - tidyverse/30-readr.qmd
+      - section: "作図 (ggplot2)"
+        contents:
+          - ggplot2/01-about.qmd
 format:
   html:
     theme:

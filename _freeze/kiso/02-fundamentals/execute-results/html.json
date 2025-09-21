@@ -1,0 +1,15 @@
+{
+  "hash": "b9aee25bea13e8c254b27c086ea02814",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"基本的な操作\"\n---\n\n## R スクリプトとコメント\n\nR スクリプトは、Rに実行させたい命令を記述したテキストファイルです。\nコードが複雑になるほど、そのコードが何をしているのかを後から見返したときや、他の人と共有するときに分かりにくくなります。\n\nそこで重要になるのがコメントです。\nコメントは、コード内にメモ書きを残すための機能で、Rはコメント部分をコードとして実行しません。\n\nRでは、`#`（ハッシュマーク）から行末までがコメントとして扱われます。\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# これはコメントです。この行はRによって無視されます。\n\n1 + 1 # このように、コードの後にコメントを書くこともできます。\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n\n\n**コメントを書く良い習慣：**\n\n- なぜそのコードを書いたのかを説明する。\n- 複雑な処理の目的を記述する。\n- 将来の自分や他の人のために、コードの意図を明確にする。\n\n## R を使った算術演算\n\nR は高性能な電卓としても利用できます。\n基本的な算術演算は、見慣れた記号を使って簡単に行うことができます。\n\n### 実際に計算してみましょう\n\nRStudioのスクリプトファイル（左上のウィンドウ）に以下のコードを書き、一行ずつ実行してみましょう。コードを実行するには、カーソルをその行に置き、{{< kbd ctrl-enter >}}（Windows/Linux）または {{< kbd cmd-enter >}}（Mac）を押します。\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# 足し算\n5 + 3\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 8\n```\n\n\n:::\n\n```{.r .cell-code}\n# 引き算\n5 - 3\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n\n```{.r .cell-code}\n# 掛け算\n5 * 3\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 15\n```\n\n\n:::\n\n```{.r .cell-code}\n# 割り算\n5 /3 \n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1.666667\n```\n\n\n:::\n\n```{.r .cell-code}\n# べき乗\n5^3\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 125\n```\n\n\n:::\n:::\n\n\n実行結果は、コンソール（通常は左下のウィンドウ）に表示されます。\n\n### 演算の優先順位\n\nR では、数学のルールと同様に、演算子に優先順位があります。\n\n- `()`（括弧）の中が最優先\n- `^`（べき乗）\n- `*`（掛け算）\n- `/`（割り算）\n- `+`（足し算）\n- `-`（引き算）\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# 括弧がない場合、掛け算が先に計算される (5 * 2 = 10, 3 + 10 = 13)\n3 + 5 * 2\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 13\n```\n\n\n:::\n\n```{.r .cell-code}\n# 括弧がある場合、括弧内が先に計算される (3 + 5 = 8, 8 * 2 = 16)\n(3 + 5) * 2\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 16\n```\n\n\n:::\n:::\n\n\n### 演習\n\n1. 自分の年齢を 2 で割って、5 を足した結果を計算するRコードを書いてみましょう。\nそのコードの上には、「年齢計算」というコメントを追加してください。\n\n2. 100 から 25 を引き、その結果を 5 で割る計算を、括弧を使って一行のコードで書いてみましょう。",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

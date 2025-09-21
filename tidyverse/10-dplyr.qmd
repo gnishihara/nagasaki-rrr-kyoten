@@ -1,0 +1,173 @@
+---
+title: "フィルタ・セレクト・アレンジ"
+---
+
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+## `dplyr` 基本操作：データの選択、並べ替え、整形
+
+では、`dplyr` パッケージの中心的な機能である「データのサブセット化」と「順序の整理」を紹介します。
+`tidyverse` を読み込んで、R に組み込まれている `starwars` データセットを使いながら、以下の4つの基本的な「動詞」をマスターしましょう。
+
+- select(): 列を選ぶ
+- filter(): 行を絞り込む
+- arrange(): 行を並べ替える
+- relocate(): 列の順序を変更する
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+
+## `select()`: 列を選ぶ
+
+`select()` は、ティブル (tibble) から必要な列だけを選び出すための関数です。
+
+分析に必要な列だけを残したり、特定の列を除外したりする場合に使います。
+
+```{r}
+# starwarsデータから、名前、身長、体重の列だけを選ぶ
+starwars |> select(name, height, mass)
+
+# name列からmass列まで、連続した列を選ぶ
+starwars |> select(name:mass)
+
+# hair_color列を「除外」する
+starwars |> select(-hair_color)
+
+# "color"で終わる名前の列をすべて選ぶ
+starwars |> select(ends_with("color"))
+```
+
+### `select()` で使える便利なヘルパー関数
+
+`select()` で一つずつ列の名前を指定するのは、列が多い場合に大変です。
+`dplyr` には、特定のパターンに一致する列名を効率よく選ぶためのヘルパー関数が用意されており、これらを `select()` や {relocate()} の中で使うことができます。
+
+- `everything()`: まだ選択されていない残りのすべての列を選びます。
+- `starts_with()`: 指定した文字で始まる名前の列をすべて選びます。
+- `ends_with()`: 指定した文字で終わる名前の列をすべて選びます。
+- `contains()`: 名前に指定した文字が含まれる列をすべて選びます（位置は問いません）。
+- `matches()`: 正規表現 (Regular Expression) という、文字列の高度なパターンマッチング言語を使って列名を選びます。`contains()` などが単純な単語を探すのに対し、`matches()` は「`A` または `B` を含む」や「`s` で始まり `t` で終わる」といった、より複雑なルールを指定できます。
+- `where()`: 列のデータ型（数値、文字列など）に基づいて列を選ぶ、少し高度ですが強力なヘルパーです。
+  - where(is.numeric): 数値型の列をすべて選びます。
+  - where(is.character): 文字列型の列をすべて選びます。
+
+```{r}
+# 文字列型の列をすべて選ぶ
+starwars |> select(where(is.character))
+```
+
+## `filter()`: 行を絞り込む
+
+`filter()` は、指定した条件に一致する行だけを絞り込むための関数です。
+
+データの特定のサブセット（例：特定の種族のキャラクター、特定の条件を満たす観測など）を抽出する際に使います。
+
+```{r}
+# 種族 (species) が "Human" のキャラクターだけを絞り込む
+starwars |> filter(species == "Human")
+
+# 身長 (height) が180cmより大きいキャラクターを絞り込む
+starwars |> filter(height > 180)
+
+# 複数の条件を組み合わせる (種族がHuman「かつ」出身惑星がTatooine)
+# カンマ(,)は「かつ」(AND) を意味します
+starwars |>  filter(species == "Human", homeworld == "Tatooine")
+
+# 複数の条件のいずれかを満たす (髪の色が "blond" 「または」 "brown")
+# | は「または」(OR) を意味します
+starwars |>  filter(hair_color == "blond" | hair_color == "brown")
+```
+
+## `filter()` のヘルパー関数
+
+- `is.na()`: データ分析では欠損値 `NA` (Not Available) の扱いは非常に重要です。`is.na()` を使うと、特定の列が `NA` である行、あるいは `NA` ではない行を簡単に絞り込めます。
+- `str_detect()`: `stringr` パッケージ (`tidyverse` に含まれる) の関数で、文字列の中に 特定のパターンが含まれているか を判定します。完全一致 (==) よりも柔軟な検索が可能です。
+- `between()`: 数値がある範囲の 間にあるか を判定します。列名 >= 最小値 & 列名 <= 最大値 と書くよりも直感的で分かりやすいです。
+- `%in%`: `|` (または) を何度も書く代わりに、指定した複数の値の いずれかに含まれるか を判定します。コードが非常にすっきりと読みやすくなります。
+
+```{r}
+starwars |> filter(is.na(mass))
+starwars |> filter(!is.na(mass))
+
+#  | をたくさん使う例
+starwars |> 
+  filter(name == "Luke Skywalker" | name == "R2-D2" | name == "Darth Vader")
+
+# %in% を使うバージョン
+target_characters <- c("Luke Skywalker", "R2-D2", "Darth Vader")
+starwars |> filter(name %in% target_characters)
+
+# "R[0-9]-D[0-9]"の正規表現に絞り込む
+starwars |> filter(str_detect(name, "R[0-9]-D[0-9]"))
+
+# mass が 90 から 120 の間の時に絞り込む
+starwars |> filter(between(mass, 90, 120))
+
+# mass が NA の時に絞り込む
+starwars |>  filter(is.na(mass))
+
+# mass が NA じゃない時に絞り込む
+starwars |>  filter(!is.na(mass))
+
+```
+
+## `arrange()`: 行を並べ替える
+
+`arrange()` は、指定した列の値に基づいて行の順序を並べ替えるための関数です。
+
+デフォルトでは昇順（小さい順、アルファベット順）に並べ替えます。降順にするには `desc()` を使います。
+
+```{r}
+# 体重 (mass) が軽い順に並べ替える
+starwars |> arrange(mass)
+
+# 身長 (height) が高い順に並べ替える
+starwars |> arrange(desc(height))
+
+# 複数の列で並べ替える (種族で並べ替え、同じ種族の中では身長が高い順に並べ替える)
+starwars |> arrange(species, desc(height))
+```
+
+## `relocate()`: 列の順序を変更する
+
+`relocate()` は、データフレームの列の順序を自由に変更するための関数です。
+
+特定の列を先頭に持ってきたり、関連する列を隣同士に並べたりして、データをみやすくするのに役立ちます。
+
+```{r}
+# `homeworld` と `species` の列を先頭に移動する
+starwars |> relocate(homeworld, species)
+
+# `birth_year` 列を `name` 列のすぐ後ろに移動する
+starwars |> relocate(birth_year, .after = name)
+
+# `gender` 列を `homeworld` 列のすぐ前に移動する
+starwars |> relocate(gender, .before = homeworld)
+```
+
+## 演習：すべてを繋げてみよう
+
+`starwars` データセットを使って、以下の条件を満たすデータを作成してください。
+
+1. 種族が "Droid" のキャラクターだけを絞り込み (`filter`)、
+2. `name`, `model`, `mass`, `birth_year` の列だけを選び (`select`)、
+3. `mass` が重い順に並べ替え (`arrange`)、
+4. `model` 列を先頭に移動させて (`relocate`) ください。
+
+
+
+
+
+
+
+
+
+
+
