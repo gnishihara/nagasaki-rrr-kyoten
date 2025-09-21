@@ -1,0 +1,394 @@
+[
+  {
+    "objectID": "tidyverse/01-about.html",
+    "href": "tidyverse/01-about.html",
+    "title": "tidyverseについて",
+    "section": "",
+    "text": "これまでは、Rに元々備わっている基本的な機能（Base Rと呼ばれます）を学んできました。 しかし、実際のデータ分析では、より効率的で直感的なツールが求められます。\nそこで登場するのが tidyverse です。 tidyverse は単一のパッケージではなく、データサイエンスのために設計されたRパッケージの集合体です。 データ分析の一連の作業（読み込み、整形、可視化など）を、一貫した哲学のもとでスムーズに行えるように作られています。\ntidyverse は、データ分析のための洗練された「道具箱」や「作業場」だと考えてください。 個々のツールが強力なだけでなく、互いに連携しやすいように設計されています。",
+    "crumbs": [
+      "tidyverse",
+      "tidyverseについて"
+    ]
+  },
+  {
+    "objectID": "tidyverse/01-about.html#tidyverse-の哲学タイディデータ",
+    "href": "tidyverse/01-about.html#tidyverse-の哲学タイディデータ",
+    "title": "tidyverseについて",
+    "section": "tidyverse の哲学：「タイディデータ」",
+    "text": "tidyverse の哲学：「タイディデータ」\ntidyverse の中心には、タイディデータ (Tidy Data) という考え方があります。 これは、データを整理するためのシンプルなルールです。\n\n各変数は、それ自身の列を持つ。\n各観測は、それ自身の行を持つ。\n各タイプの観測ユニットは、それ自身のテーブルを持つ。\n\nこの一貫したデータ形式に整えることで、tidyverse の各ツールをスムーズに連携させることができるのです。",
+    "crumbs": [
+      "tidyverse",
+      "tidyverseについて"
+    ]
+  },
+  {
+    "objectID": "tidyverse/01-about.html#tidyverse-の主要なパッケージたち",
+    "href": "tidyverse/01-about.html#tidyverse-の主要なパッケージたち",
+    "title": "tidyverseについて",
+    "section": "tidyverse の主要なパッケージたち",
+    "text": "tidyverse の主要なパッケージたち\ntidyverse をインストールすると、データ分析で頻繁に使われる多くの便利パッケージが一度に利用可能になります。 ここでは特に重要なものをいくつか紹介します。\n\ndplyr : データ操作の「動詞」集です。filter()（行の絞り込み）、select()（列の選択）、mutate()（新しい列の作成）、arrange()（並べ替え）、summarise()（要約）といった直感的な関数で、データを自在に操れます。\nggplot2: Rで最も有名で強力なデータ可視化パッケージです。「グラフィックスの文法」という考え方に基づいており、単純なグラフから非常に複雑で美しいグラフまで、柔軟に作成できます。\nreadr: CSVファイルなどの表形式データを高速かつ正確に読み込むためのパッケージです。Base Rの関数よりも使いやすく、安定しています。\ntidyr: データを「タイディな」形式に整形するためのパッケージです。列と行の形式を変換する pivot_longer() や pivot_wider() などの関数を提供します。\nstringr: 文字列（テキストデータ）の操作を簡単にするためのパッケージです。",
+    "crumbs": [
+      "tidyverse",
+      "tidyverseについて"
+    ]
+  },
+  {
+    "objectID": "tidyverse/01-about.html#魔法のパイプ演算子-または",
+    "href": "tidyverse/01-about.html#魔法のパイプ演算子-または",
+    "title": "tidyverseについて",
+    "section": "魔法のパイプ演算子 %>% または |>",
+    "text": "魔法のパイプ演算子 %&gt;% または |&gt;\ntidyverse のコードを特徴づけるのが、パイプ演算子 %&gt;% です。 これは、左側の処理結果を、右側の関数の最初の引数として渡す役割をします。\nR のネイティブのパイプは |&gt; ですが、どちらでも似たような使い方です。\nこれにより、複数の処理を上から下、左から右へと、まるで文章を読むように繋げて書くことができます。\n%&gt;% はショートカットキー ctrl-shift-mctrl-shift-m (Windows/Linux) または cmd-shift-mcmd-shift-m (Mac) で簡単に入力できます。\nパイプを使わない場合\n\n# diamondsデータセットから、カットが \"Premium\" のものを抜き出し、\n# その価格の平均を計算する\nsummarise(filter(diamonds, cut == \"Premium\"), mean_price = mean(price))\n\n# A tibble: 1 × 1\n  mean_price\n       &lt;dbl&gt;\n1      4584.\n\n\nこのように、関数の内側に入れ子構造で書いていくため、処理が複雑になると読みにくくなります。\nパイプ %&gt;% を使った場合\n\n# 上と全く同じ処理\ndiamonds %&gt;%\n  filter(cut == \"Premium\") %&gt;%\n  summarise(mean_price = mean(price))\n\n# A tibble: 1 × 1\n  mean_price\n       &lt;dbl&gt;\n1      4584.\n\n\ndiamonds データセットを、次に filter し、次に summarise する、という処理の流れが非常に分かりやすくなります。",
+    "crumbs": [
+      "tidyverse",
+      "tidyverseについて"
+    ]
+  },
+  {
+    "objectID": "tidyverse/01-about.html#tidyverse-のインストールと使い方",
+    "href": "tidyverse/01-about.html#tidyverse-のインストールと使い方",
+    "title": "tidyverseについて",
+    "section": "tidyverse のインストールと使い方",
+    "text": "tidyverse のインストールと使い方\ntidyverse を使うには、まず一度だけインストール作業が必要です。\n\n# 一度だけ実行すればOK\ninstall.packages(\"tidyverse\")\n\nインストールが終わったら、Rのセッションを開始するたびに、library() 関数を使って tidyverse の道具箱を使えるように準備します。\n\n# Rスクリプトの冒頭で毎回実行する\nlibrary(tidyverse)",
+    "crumbs": [
+      "tidyverse",
+      "tidyverseについて"
+    ]
+  },
+  {
+    "objectID": "tidyverse/01-about.html#演習",
+    "href": "tidyverse/01-about.html#演習",
+    "title": "tidyverseについて",
+    "section": "演習",
+    "text": "演習\n\nまだインストールしていない場合は、tidyverse をインストールしてください。\nlibrary(tidyverse) を実行して、パッケージを読み込んでください。\nRに組み込まれている iris というデータセットがあります。パイプ演算子 %&gt;% を使って、以下の処理を一行で繋げて書いてみましょう。\n\n\niris データセットを使い、\nSpecies が “setosa” の行だけを filter() で絞り込み、\nその Sepal.Length（がくの長さ）の平均値を summarise() で計算する。\n\n（ヒント：summarise(mean_sepal_length = mean(Sepal.Length)) のように書きます）",
+    "crumbs": [
+      "tidyverse",
+      "tidyverseについて"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html",
+    "href": "kiso/04-vector.html",
+    "title": "ベクトル・行列などの作り方",
+    "section": "",
+    "text": "これまでは、一つの値を一つのオブジェクトに格納する方法を学びました。しかし、実際のデータ分析では、複数の値をまとめて扱いたい場面がほとんどです。ここでは、そのための基本的な3つのデータ構造、ベクトル、リスト、行列を学びましょう。",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#ベクトル-vector",
+    "href": "kiso/04-vector.html#ベクトル-vector",
+    "title": "ベクトル・行列などの作り方",
+    "section": "ベクトル (Vector)",
+    "text": "ベクトル (Vector)\nベクトルは、Rにおける最も基本的なデータ構造です。 同じ種類のデータ（例：すべて数値、すべて文字）を一直線に並べたものです。\nベクトルを作成するには、c() という関数を使います。 c は “combine” (組み合わせる) の略です。\n\n# 数値のベクトルを作成\nnumeric_vector &lt;- c(10, 20, 30, 40, 50)\nnumeric_vector\n\n[1] 10 20 30 40 50\n\n# 文字列のベクトルを作成 (文字列は \"\" または '' で囲む)\ncharacter_vector &lt;- c(\"apple\", \"banana\", \"cherry\")\ncharacter_vector\n\n[1] \"apple\"  \"banana\" \"cherry\"\n\n# 論理値 (TRUE/FALSE) のベクトルを作成\nlogical_vector &lt;- c(TRUE, FALSE, TRUE, TRUE)\nlogical_vector\n\n[1]  TRUE FALSE  TRUE  TRUE\n\n\nベクトルの特徴：\n同じデータ型の要素しか含めることができません。 もし異なる型のデータを混ぜると、Rが自動的に型を変換します（例：数値と文字を混ぜると、すべて文字に変換されます）。\n\nベクトルに対する操作\nベクトル全体に対して一度に計算を行うことができます。 これをベクトル化演算と呼び、Rの強力な特徴の一つです。\n\n# numeric_vector の各要素を2倍する\nnumeric_vector * 2\n\n[1]  20  40  60  80 100\n\n# numeric_vector の各要素に5を足す\nnumeric_vector + 5\n\n[1] 15 25 35 45 55",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#リスト-list",
+    "href": "kiso/04-vector.html#リスト-list",
+    "title": "ベクトル・行列などの作り方",
+    "section": "リスト (List) ️",
+    "text": "リスト (List) ️\nリストは、ベクトルとは異なり、異なる種類のデータを一つのオブジェクトに格納できる、より柔軟なデータ構造です。 まるで、色々な種類の品物を入れられるショッピングカートのようです。\nリストを作成するには、list() 関数を使います。\n\n# 数値、文字列、ベクトルを混在させたリストを作成\nmy_list &lt;- list(\n  name = \"Taro\",      # 文字列\n  age = 30,           # 数値\n  scores = c(85, 92, 78), # ベクトル\n  is_student = TRUE   # 論理値\n)\n\nmy_list\n\n$name\n[1] \"Taro\"\n\n$age\n[1] 30\n\n$scores\n[1] 85 92 78\n\n$is_student\n[1] TRUE\n\n\nリストの特徴：\n数値、文字列、ベクトル、さらには他のリストなど、何でも格納できます。\n= を使って各要素に名前をつけることができます（例：name = \"Taro\"）。",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#リストの要素へのアクセス",
+    "href": "kiso/04-vector.html#リストの要素へのアクセス",
+    "title": "ベクトル・行列などの作り方",
+    "section": "リストの要素へのアクセス",
+    "text": "リストの要素へのアクセス\nリストの特定の要素を取り出すには、$ または [[ ]] を使います。\n\n# `$` を使って \"name\" 要素にアクセス\nmy_list$name\n\n[1] \"Taro\"\n\n# `[[ ]]` を使って \"scores\" 要素にアクセス\nmy_list[[\"scores\"]]\n\n[1] 85 92 78",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#行列-matrix",
+    "href": "kiso/04-vector.html#行列-matrix",
+    "title": "ベクトル・行列などの作り方",
+    "section": "行列 (Matrix)",
+    "text": "行列 (Matrix)\n行列（マトリックス）は、ベクトルを2次元（行と列）に拡張したものです。スプレッドシートの表のように、データを行と列の形式で扱います。\n行列を作成するには、matrix() 関数を使います。\n\n# 1から6までの数値を使って、2行3列の行列を作成\nmy_matrix &lt;- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)\nmy_matrix\n\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6\n\n\n行列の特徴：\nベクトルと同様に、すべての要素が同じデータ型でなければなりません。\nnrow で行数を、ncol で列数を指定します。",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#行列の要素へのアクセス",
+    "href": "kiso/04-vector.html#行列の要素へのアクセス",
+    "title": "ベクトル・行列などの作り方",
+    "section": "行列の要素へのアクセス",
+    "text": "行列の要素へのアクセス\n行列の要素には、[行番号, 列番号] という形式でアクセスします。\n\n# 2行目の3列目の要素にアクセス\nmy_matrix[2, 3]\n\n[1] 6\n\n# 1行目のすべての要素にアクセス (列番号を空にする)\nmy_matrix[1, ]\n\n[1] 1 3 5\n\n# 2列目のすべての要素にアクセス (行番号を空にする)\nmy_matrix[, 2]\n\n[1] 3 4",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#配列-array",
+    "href": "kiso/04-vector.html#配列-array",
+    "title": "ベクトル・行列などの作り方",
+    "section": "配列 (Array)",
+    "text": "配列 (Array)\n配列は、同じ種類のデータを3次元以上の構造で格納するためのオブジェクトです。行列がスプレッドシート1枚だとすれば、配列はそのスプレッドシートを何枚も重ねた「束」や「キューブ」のようなものだとイメージしてください。\n配列を作成するには、array() 関数を使います。\narray(データ, dim = c(行数, 列数, 次元数, ...))\ndim (dimensionsの略) 引数に、各次元の大きさをベクトルで指定するのがポイントです。\n2つの「3行2列」の行列を重ねた、3次元の配列を作成してみましょう。\n\n# 1から12までの数値データを用意\ndata_vector &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)\n\n# 3行 x 2列 x 2面 の配列を作成\nmy_array &lt;- array(data_vector, dim = c(3, 2, 2))\n\nmy_array\n\n, , 1\n\n     [,1] [,2]\n[1,]    1    4\n[2,]    2    5\n[3,]    3    6\n\n, , 2\n\n     [,1] [,2]\n[1,]    7   10\n[2,]    8   11\n[3,]    9   12\n\n\n実行すると、コンソールには2つの3x2行列が表示されます。これが dim = c(3, 2, 2) の意味するところです。\n配列の特徴：\n行列と同様に、すべての要素が同じデータ型でなければなりません。\ndim を指定することで、2次元、3次元、4次元…と自由に次元を定義できます。",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#配列の要素へのアクセス",
+    "href": "kiso/04-vector.html#配列の要素へのアクセス",
+    "title": "ベクトル・行列などの作り方",
+    "section": "配列の要素へのアクセス",
+    "text": "配列の要素へのアクセス\n配列の要素へのアクセスは、行列の [行, 列] という指定をさらに拡張した形で行います。3次元配列の場合は [行番号, 列番号, 面番号] のようになります。\n\n# 1番目の面の、3行目の2列目の要素にアクセス\nmy_array[3, 2, 1]\n\n[1] 6\n\n# 2番目の面の、すべての要素（つまり2番目の行列全体）にアクセス\nmy_array[, , 2]\n\n     [,1] [,2]\n[1,]    7   10\n[2,]    8   11\n[3,]    9   12\n\n# すべての面の、1行目のすべての列にアクセス\nmy_array[1, , ]\n\n     [,1] [,2]\n[1,]    1    7\n[2,]    4   10",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#まとめ",
+    "href": "kiso/04-vector.html#まとめ",
+    "title": "ベクトル・行列などの作り方",
+    "section": "まとめ",
+    "text": "まとめ\n\nベクトル：同じ型のデータを1次元に並べたもの c()\nリスト：異なる型のデータを格納できるもの list()\n行列：同じ型のデータを2次元（行と列）に並べたもの matrix()\n配列: 同じ型のデータを N 次元に並べたもの array()",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/04-vector.html#演習",
+    "href": "kiso/04-vector.html#演習",
+    "title": "ベクトル・行列などの作り方",
+    "section": "演習",
+    "text": "演習\n\nあなたの好きな3つの果物の名前を要素に持つ、favorite_fruits という名前のベクトルを作成してください。\nname（あなたの名前）、height（あなたの身長(cm)）、favorite_number（好きな数字）という3つの要素を持つ my_profile という名前のリストを作成してください。\n1から9までの連続した整数を使って、3行3列の行列 nine_matrix を作成してください。\n1から27までの連続した整数を使って、3行3列の行列が3つ重なった構造の3次元配列 cube_array を作成してください。\n作成した cube_array の3番目の行列（面）だけを取り出して表示してください。\ncube_array の1番目の行列（面）の、2行目、2列目にある要素は何ですか？コードを書いて確認してみましょう。",
+    "crumbs": [
+      "基礎",
+      "ベクトル・行列などの作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/02-fundamentals.html",
+    "href": "kiso/02-fundamentals.html",
+    "title": "基本的な操作",
+    "section": "",
+    "text": "R スクリプトは、Rに実行させたい命令を記述したテキストファイルです。 コードが複雑になるほど、そのコードが何をしているのかを後から見返したときや、他の人と共有するときに分かりにくくなります。\nそこで重要になるのがコメントです。 コメントは、コード内にメモ書きを残すための機能で、Rはコメント部分をコードとして実行しません。\nRでは、#（ハッシュマーク）から行末までがコメントとして扱われます。\n\n# これはコメントです。この行はRによって無視されます。\n\n1 + 1 # このように、コードの後にコメントを書くこともできます。\n\n[1] 2\n\n\nコメントを書く良い習慣：\n\nなぜそのコードを書いたのかを説明する。\n複雑な処理の目的を記述する。\n将来の自分や他の人のために、コードの意図を明確にする。",
+    "crumbs": [
+      "基礎",
+      "基本的な操作"
+    ]
+  },
+  {
+    "objectID": "kiso/02-fundamentals.html#r-スクリプトとコメント",
+    "href": "kiso/02-fundamentals.html#r-スクリプトとコメント",
+    "title": "基本的な操作",
+    "section": "",
+    "text": "R スクリプトは、Rに実行させたい命令を記述したテキストファイルです。 コードが複雑になるほど、そのコードが何をしているのかを後から見返したときや、他の人と共有するときに分かりにくくなります。\nそこで重要になるのがコメントです。 コメントは、コード内にメモ書きを残すための機能で、Rはコメント部分をコードとして実行しません。\nRでは、#（ハッシュマーク）から行末までがコメントとして扱われます。\n\n# これはコメントです。この行はRによって無視されます。\n\n1 + 1 # このように、コードの後にコメントを書くこともできます。\n\n[1] 2\n\n\nコメントを書く良い習慣：\n\nなぜそのコードを書いたのかを説明する。\n複雑な処理の目的を記述する。\n将来の自分や他の人のために、コードの意図を明確にする。",
+    "crumbs": [
+      "基礎",
+      "基本的な操作"
+    ]
+  },
+  {
+    "objectID": "kiso/02-fundamentals.html#r-を使った算術演算",
+    "href": "kiso/02-fundamentals.html#r-を使った算術演算",
+    "title": "基本的な操作",
+    "section": "R を使った算術演算",
+    "text": "R を使った算術演算\nR は高性能な電卓としても利用できます。 基本的な算術演算は、見慣れた記号を使って簡単に行うことができます。\n\n実際に計算してみましょう\nRStudioのスクリプトファイル（左上のウィンドウ）に以下のコードを書き、一行ずつ実行してみましょう。コードを実行するには、カーソルをその行に置き、ctrl-enterctrl-enter（Windows/Linux）または cmd-entercmd-enter（Mac）を押します。\n\n# 足し算\n5 + 3\n\n[1] 8\n\n# 引き算\n5 - 3\n\n[1] 2\n\n# 掛け算\n5 * 3\n\n[1] 15\n\n# 割り算\n5 /3 \n\n[1] 1.666667\n\n# べき乗\n5^3\n\n[1] 125\n\n\n実行結果は、コンソール（通常は左下のウィンドウ）に表示されます。\n\n\n演算の優先順位\nR では、数学のルールと同様に、演算子に優先順位があります。\n\n()（括弧）の中が最優先\n^（べき乗）\n*（掛け算）\n/（割り算）\n+（足し算）\n-（引き算）\n\n\n# 括弧がない場合、掛け算が先に計算される (5 * 2 = 10, 3 + 10 = 13)\n3 + 5 * 2\n\n[1] 13\n\n# 括弧がある場合、括弧内が先に計算される (3 + 5 = 8, 8 * 2 = 16)\n(3 + 5) * 2\n\n[1] 16\n\n\n\n\n演習\n\n自分の年齢を 2 で割って、5 を足した結果を計算するRコードを書いてみましょう。 そのコードの上には、「年齢計算」というコメントを追加してください。\n100 から 25 を引き、その結果を 5 で割る計算を、括弧を使って一行のコードで書いてみましょう。",
+    "crumbs": [
+      "基礎",
+      "基本的な操作"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "水産海洋データ解析演習の R コードについて",
+    "section": "",
+    "text": "このサイトは 水産海洋データ解析演習 のために準備しました。\nサイトの更新日は 09/21/2025 14:15:04 JST です。\nはここ https://cran.r-project.org/ からダウンロードできます。 Windows ユーザは Rtools もインストールすることをお勧めします。\nRStudio もインストールしましょう。 R のデフォルトの IDE はとても使いにくいです。\nSession Information",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#quick-reference",
+    "href": "index.html#quick-reference",
+    "title": "水産海洋データ解析演習の R コードについて",
+    "section": "Quick Reference",
+    "text": "Quick Reference\nヘルプ\n\n?mean                          # mean() 関数のヘルプをみる\nhelp.search(\"mean\")            # 文字列で検索\nhelp(package = \"tidyverse\")    # パッケージのヘルプをみる\n\nライブラリー (library)\n\ninstall.packages(\"tidyverse\")   # CRANサーバからパッケージをインストールする\n\n一回インストールすればいいので、install.packages() は毎回する必要はない。\n\nlibrary(tidyverse)              # パッケージをライブラリーから読み込む\nnlstools::preview()             # パッケージ内の関数を直接使う\n\nプログラミング文の基礎\nfor loop\nfor (変数名 in シークエンス) {\n  繰り返し実行するコード\n}\n\nfor(i in 1:10) {\n  j = j + i\n  print(j)\n}\n\nwhile loop\nwhile(条件) {\n  繰り返し実行するコード\n}\n\ni = 0\nwhile(i &lt;= 10) {\n  i = i + 1\n  print(i)\n}\n\nif else\nif(条件) {\n  コード\n} else {\n　条件を満たさないときのコード\n}\n\nx1 = sample(1:6, 1) \nx2 = sample(1:6, 1)\nif(near(x1 + x2, 7)) {\n  print(paste(x1, x2))\n} else {\n  print(x1 + x2)}\n\n条件判定\n\nx == y : x と y は等しい\nx != y : x と y は等しくない\nx &gt; y : x が y より大きい\nx &lt; y : x が y より小さい\nx &gt;= y : x が y 以上\nx &lt;= y : x が y 以下\nis.na(x) : x が欠損値である\nis.null(x) : x が null 値である\nany(x %in% y) : x が y に含まれる\n\nfunction\n関数名 = function(変数1, 変数2, ...) {\n  コード\n}\n\nse = function(x, na.rm = FALSE) {\n  s = sd(x, na.rm = na.rm)\n  n = length(na.omit(x))\n  s / sqrt(n - 1)\n}\n\nファイルの入出力\n研究室では、ファイルの入出力に tidyverse　パッケージの関数を使っています。\n\nlibrary(tidyerse)\n\n\n# ファイルの読み込み\ndset = read_table(\"filename.txt\") # タブ・コンマ区切りのテキストファイル\ndset = read_csv(\"filename.csv\")   # コンマ区切りの csv ファイル\ndset = read_rds(\"filename.rds\")   # R オブジェクトファイル\n\n\n# ファイルの書き込み。文字のエンコーディングは UTF-8 です。\nwrite_tsv(dset, \"filename.txt\")         # タブ区切りの txt ファイル\nwrite_csv(dset, \"filename.csv\")         # コンマ区切りの csv ファイル\nwrite_excel_csv(dset, \"filename.csv\")   # Excel用 コンマ区切りの csv ファイル\nwrite_rds(dset, \"filename.rds\")         # R オブジェクトファイル\n\n資料は自由に使ってください (MIT License)。 サイトは Quarto で作成しました。",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "このサイトについて",
+    "section": "",
+    "text": "水産海洋データ解析演習I・II のコードを紹介するためのサイトです。",
+    "crumbs": [
+      "サイトについて"
+    ]
+  },
+  {
+    "objectID": "about.html#水産海洋データ解析演習iiiとは",
+    "href": "about.html#水産海洋データ解析演習iiiとは",
+    "title": "このサイトについて",
+    "section": "水産海洋データ解析演習I・IIとは",
+    "text": "水産海洋データ解析演習I・IIとは\nデータ処理ソフトウエア R を用いて，本ソフトの原理, 操作技術習得し, 統計解析・データ解析技術を学びます。 本演習では データ処理・ 作図作業を中心に学習し ます。 フィールドで得られたデータを用い，具体的な事象をあげながら講義を進めます。 また各自のデータの解析相談にも応じます。\nデータ処理ソフトウエア R を用いて, 本ソフトの原理, 操作技術習得し, 統計解析・デ ータ解析技術を学びます。 演習では 一般化線形モデル解析，非線形モデル解析、ビッグデータ解析の基礎を中心に学習し ます。 フィールドで得られたデータを用い，具体的な事象をあげながら講義を進めます。 た各自のデータの解析相談にも応じます。",
+    "crumbs": [
+      "サイトについて"
+    ]
+  },
+  {
+    "objectID": "kiso/01-assignment.html",
+    "href": "kiso/01-assignment.html",
+    "title": "代入演算子",
+    "section": "",
+    "text": "代入は = か &lt;- alt--alt-- です。伝統的に使われる代入は &lt;- ですが、私は = を使っています。\n左辺は変数名、右辺は値です。\n\n\na = 4.2\nb &lt;- 5.0\n\na に入れた値を見るには次のようにコードを実行しましょう。\n\na\n\n[1] 4.2\n\n\nb の内容も同じようにみれます。\n\nb\n\n[1] 5",
+    "crumbs": [
+      "基礎",
+      "代入演算子"
+    ]
+  },
+  {
+    "objectID": "kiso/01-assignment.html#代入演算子-assignment-operator-とベクトル-vector-とは",
+    "href": "kiso/01-assignment.html#代入演算子-assignment-operator-とベクトル-vector-とは",
+    "title": "代入演算子",
+    "section": "",
+    "text": "代入は = か &lt;- alt--alt-- です。伝統的に使われる代入は &lt;- ですが、私は = を使っています。\n左辺は変数名、右辺は値です。\n\n\na = 4.2\nb &lt;- 5.0\n\na に入れた値を見るには次のようにコードを実行しましょう。\n\na\n\n[1] 4.2\n\n\nb の内容も同じようにみれます。\n\nb\n\n[1] 5",
+    "crumbs": [
+      "基礎",
+      "代入演算子"
+    ]
+  },
+  {
+    "objectID": "kiso/03-objects.html",
+    "href": "kiso/03-objects.html",
+    "title": "オブジェクトへの代入",
+    "section": "",
+    "text": "前回のレッスンでは、Rを電卓のように使って計算を行いました。 しかし、計算結果をその場で確認するだけでは、その結果を次の計算で使うことができず不便です。\nそこで登場するのがオブジェクトです。 オブジェクトとは、数値や計算結果、さらにはデータセット全体に名前をつけて保存しておくための「箱」のようなものです。 このプロセスを代入と呼びます。",
+    "crumbs": [
+      "基礎",
+      "オブジェクトへの代入"
+    ]
+  },
+  {
+    "objectID": "kiso/03-objects.html#オブジェクトへの代入",
+    "href": "kiso/03-objects.html#オブジェクトへの代入",
+    "title": "オブジェクトへの代入",
+    "section": "オブジェクトへの代入",
+    "text": "オブジェクトへの代入\nRでは、&lt;- という矢印のような記号（代入演算子と呼ばれます）を使って、オブジェクトに値を代入します。\n基本の形：\nオブジェクト名 &lt;- 値\n\n# `x` という名前のオブジェクトに `10` を代入する\nx &lt;- 10\n\n# `y` という名前のオブジェクトに `5 + 3` の計算結果を代入する\ny &lt;- 5 + 3\n\n&lt;- は、&lt; と - を組み合わせて入力します。 RStudioでは、ショートカットキー Alt + - (Windows/Linux) または Option + - (Mac) で簡単に入力できます。\n代入を実行しても、コンソールには何も表示されません。 しかし、RStudioの右上にある Environment タブに、作成されたオブジェクト x と y が表示されているはずです。 これは、オブジェクトが R の記憶領域に正しく保存されたことを意味します。",
+    "crumbs": [
+      "基礎",
+      "オブジェクトへの代入"
+    ]
+  },
+  {
+    "objectID": "kiso/03-objects.html#オブジェクトの利用",
+    "href": "kiso/03-objects.html#オブジェクトの利用",
+    "title": "オブジェクトへの代入",
+    "section": "オブジェクトの利用",
+    "text": "オブジェクトの利用\n一度オブジェクトに値を代入すれば、そのオブジェクト名を計算式の中で使うことができます。 Rはオブジェクト名をその中身の値として解釈してくれます。\n\n# 上で作成した `x` と `y` を使って計算する\nx + y\n\n[1] 18\n\nx * y\n\n[1] 80\n\n# 計算結果を新しいオブジェクト `z` に代入する\nz &lt;- x + y\n\nオブジェクトの中身を確認したいときは、オブジェクト名だけをスクリプトに書いて実行します。\n\n# オブジェクト `z` の中身を表示する\nz\n\n[1] 18\n\n\nコンソールに z の中身である 18 が表示されます。",
+    "crumbs": [
+      "基礎",
+      "オブジェクトへの代入"
+    ]
+  },
+  {
+    "objectID": "kiso/03-objects.html#オブジェクト名のルール",
+    "href": "kiso/03-objects.html#オブジェクト名のルール",
+    "title": "オブジェクトへの代入",
+    "section": "オブジェクト名のルール",
+    "text": "オブジェクト名のルール\nオブジェクト名には、好きな名前をつけることができますが、いくつかのルールと推奨される慣習があります。\nルール（必須）：\n\nアルファベット、数字、.（ドット）、_（アンダースコア）が使えます。\nただし、名前の先頭を数字や . の直後に数字が来る形にすることはできません。（例：2x や .2x はNG）\nT, F, c, q など、Rであらかじめ特別な意味を持つ単語（予約語）は避けるべきです。\n\n慣習（推奨）：\n\n名前は小文字で始める。\n複数の単語をつなげる場合は、_ で区切る（スネークケース）。例：my_data\nオブジェクトの中身がわかるような、意味のある名前をつける。例：x よりも test_score の方が分かりやすい。",
+    "crumbs": [
+      "基礎",
+      "オブジェクトへの代入"
+    ]
+  },
+  {
+    "objectID": "kiso/03-objects.html#演習",
+    "href": "kiso/03-objects.html#演習",
+    "title": "オブジェクトへの代入",
+    "section": "演習",
+    "text": "演習\n\nwidth という名前のオブジェクトに 20 を、height という名前のオブジェクトに 10 を代入してください。\nwidth と height を使って長方形の面積を計算し、その結果を area という名前の新しいオブジェクトに代入してください。\n最後に、area オブジェクトの中身をコンソールに表示させてください。",
+    "crumbs": [
+      "基礎",
+      "オブジェクトへの代入"
+    ]
+  },
+  {
+    "objectID": "kiso/05-functions.html",
+    "href": "kiso/05-functions.html",
+    "title": "R関数の使い方と作り方",
+    "section": "",
+    "text": "これまでは、c() や matrix() といったRにあらかじめ用意されている組み込み関数を使ってきました。 関数とは、特定の処理をひとまとめにした「道具」のようなものです。\nRの素晴らしい点は、この「道具」を自分で作れることです。 同じような処理を何度も書く代わりに、一度だけ関数として定義しておけば、あとはその関数名を呼び出すだけで何度でも同じ処理を実行できます。 これにより、コードが整理され、間違いが減り、効率が劇的に向上します。",
+    "crumbs": [
+      "基礎",
+      "R関数の使い方と作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/05-functions.html#関数とは",
+    "href": "kiso/05-functions.html#関数とは",
+    "title": "R関数の使い方と作り方",
+    "section": "関数とは？",
+    "text": "関数とは？\n関数は、一連の命令をまとめた再利用可能なコードブロックです。\n\n入力（引数 - “ひきすう” と読みます） を受け取り、\n決められた処理を実行し、\n出力（返り値 - “かえりち”） を返します。\n\n自動販売機をイメージしてみてください。 「お金」と「ボタン」という入力に対して、「ジュースを出す」という処理を行い、「ジュース」という出力を返します。 これが関数の基本的な考え方です。",
+    "crumbs": [
+      "基礎",
+      "R関数の使い方と作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/05-functions.html#関数の使い方",
+    "href": "kiso/05-functions.html#関数の使い方",
+    "title": "R関数の使い方と作り方",
+    "section": "関数の使い方",
+    "text": "関数の使い方\nRで関数を自作するには、function() というキーワードを使います。\n基本の形：\n関数名 &lt;- function(引数1, 引数2, ...) {\n  # ここに実行したい処理を書く\n  \n  return(最終的な結果) # return()で出力する値を指定\n}\n各部分の解説：\n\n関数名: あなたが作る関数につける名前です。オブジェクト名と同じルールで命名します。\nfunction(引数, ...): 関数を定義する宣言です。() の中に、この関数が受け取る入力（引数）の名前をカンマで区切って書きます。\n{ }: この波括弧で囲まれた部分が、関数の本体です。実行したい処理をこの中に記述します。\nreturn(値): 関数の処理結果として何を返す（出力する）かを指定します。return() を書かなくても、最後に評価された値が自動的に返り値となりますが、コードを分かりやすくするために明示的に書くことが推奨されます。",
+    "crumbs": [
+      "基礎",
+      "R関数の使い方と作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/05-functions.html#簡単な関数を作って使ってみよう",
+    "href": "kiso/05-functions.html#簡単な関数を作って使ってみよう",
+    "title": "R関数の使い方と作り方",
+    "section": "簡単な関数を作って使ってみよう",
+    "text": "簡単な関数を作って使ってみよう\n2つの数値を足し算する関数\nadd_numbers という名前で、a と b という2つの数値を引数として受け取り、その合計を返す関数を作ってみましょう。\n\n# 関数の定義\nadd_numbers &lt;- function(a, b) {\n  result &lt;- a + b\n  return(result)\n}\n\nこのコードを実行しても、コンソールには何も表示されません。これは関数の「設計図」を作っただけで、まだ実行していないからです。 Environment タブに関数名 add_numbers が追加されていることを確認してください。\n作成した関数の使い方：\n関数を使うことを「呼び出す (call)」と言います。関数名を書き、() の中に具体的な値（引数）を入れて実行します。\n\n# 作成した関数を呼び出す\nsum1 &lt;- add_numbers(a = 5, b = 10)\nsum1 # 結果を表示\n\n[1] 15\n\nsum2 &lt;- add_numbers(100, 200) # 引数名は省略してもOK\nsum2\n\n[1] 300",
+    "crumbs": [
+      "基礎",
+      "R関数の使い方と作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/05-functions.html#引数のデフォルト値",
+    "href": "kiso/05-functions.html#引数のデフォルト値",
+    "title": "R関数の使い方と作り方",
+    "section": "引数のデフォルト値",
+    "text": "引数のデフォルト値\n引数には、あらかじめデフォルト値を設定しておくことができます。これにより、関数を呼び出す際に引数が指定されなかった場合に、そのデフォルト値が自動的に使われます。\n挨拶をする関数\n“Hello” という挨拶をデフォルトにしつつ、“Good morning” など他の挨拶も指定できるようにしてみましょう。\n\n# \"greeting\" 引数にデフォルト値を設定\ngreet &lt;- function(name, greeting = \"Hello\") {\n  message &lt;- paste(greeting, name, sep = \", \") # pasteは文字列を結合する関数\n  return(message)\n}\n\n# デフォルト値を使って呼び出す\ngreet(name = \"Alice\")\n\n[1] \"Hello, Alice\"\n\n# デフォルト値を上書きして呼び出す\ngreet(name = \"Bob\", greeting = \"Good morning\")\n\n[1] \"Good morning, Bob\"",
+    "crumbs": [
+      "基礎",
+      "R関数の使い方と作り方"
+    ]
+  },
+  {
+    "objectID": "kiso/05-functions.html#演習",
+    "href": "kiso/05-functions.html#演習",
+    "title": "R関数の使い方と作り方",
+    "section": "演習",
+    "text": "演習\n\n数値 x を引数として受け取り、その数値を2乗した結果を返す square_number という名前の関数を作成してください。\n作成した square_number 関数を使って、15 を2乗した結果を求めてください。\n長方形の縦 height と横 width を引数として受け取り、その面積を計算して返す calculate_rectangle_area という関数を作成してください。 4.作成した calculate_rectangle_area 関数を使い、縦が 20、横が 30 の長方形の面積を計算してください。",
+    "crumbs": [
+      "基礎",
+      "R関数の使い方と作り方"
+    ]
+  }
+]
