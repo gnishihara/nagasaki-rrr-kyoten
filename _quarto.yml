@@ -30,6 +30,7 @@ website:
       - section: "作図 (ggplot2)"
         contents:
           - ggplot2/01-about.qmd
+          - ggplot2/10-points.qmd
 format:
   html:
     theme:
