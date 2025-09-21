@@ -361,8 +361,7 @@ dbl (2): id, score
 <div class="callout-body-container callout-body">
 <p>Rスクリプトで <code>read_csv("data/my_sample_data.csv")</code> のようにファイルパスを指定すると、そのスクリプトを誰かと共有したり、別のPCで実行したり、ファイルの場所を移動したりした際に、パスが通らなくなりエラーが頻発します。</p>
 <p>これは、Rがどのフォルダを基準にファイルを探しているか（ワーキングディレクトリ）が、実行環境によって変わってしまうためです。この問題を解決するために <code>setwd("C:/Users/...")</code> のようにワーキングディレクトリを固定する方法もありますが、これは他の人のPCでは動かないため、悪い習慣とされています。</p>
-<section id="herehere-がすべてを解決" class="level2">
-<h2 class="anchored" data-anchor-id="herehere-がすべてを解決"><code>here::here()</code> がすべてを解決</h2>
+<p><strong><code>here::here()</code> がすべてを解決</strong></p>
 <p><code>here</code> パッケージは、この問題をシンプルかつエレガントに解決します。</p>
 <p>メリット:</p>
 <ul>
@@ -372,7 +371,6 @@ dbl (2): id, score
 <li>直感的: プロジェクトのルート（一番上の階層）を基準にパスを組み立てるため、非常に分かりやすいです。</li>
 </ul>
 <p><code>hereの仕組み</code>: <code>here</code> は、現在のスクリプトの場所から上の階層に向かって <code>.Rproj</code> ファイルや <code>.git</code> フォルダを探します。それらが見つかった場所を「プロジェクトのルート」と判断し、そこを基準点としてファイルへの絶対パスを安全に構築してくれるのです。</p>
-</section>
 </div>
 </div>
 <section id="herehere-の使い方" class="level3">
