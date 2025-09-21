@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>基本的な操作 – 水産海洋データ解析演習I・II</title>
+<title>ミューテート・グループバイ・サマライズ – 水産海洋データ解析演習I・II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,8 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-81907348be4d4a5d12dba001a5b3f1df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
-<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/02-fundamentals.html">基本的な操作</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/20-dplyr.html">ミューテート・グループバイ・サマライズ</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -172,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link active">
+  <a href="../kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">基本的な操作</span></a>
   </div>
 </li>
@@ -219,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tidyverse/20-dplyr.html" class="sidebar-item-text sidebar-link">
+  <a href="../tidyverse/20-dplyr.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ミューテート・グループバイ・サマライズ</span></a>
   </div>
 </li>
@@ -258,22 +256,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-スクリプトとコメント" id="toc-r-スクリプトとコメント" class="nav-link active" data-scroll-target="#r-スクリプトとコメント">R スクリプトとコメント</a></li>
-  <li><a href="#r-を使った算術演算" id="toc-r-を使った算術演算" class="nav-link" data-scroll-target="#r-を使った算術演算">R を使った算術演算</a>
-  <ul class="collapse">
-  <li><a href="#実際に計算してみましょう" id="toc-実際に計算してみましょう" class="nav-link" data-scroll-target="#実際に計算してみましょう">実際に計算してみましょう</a></li>
-  <li><a href="#演算の優先順位" id="toc-演算の優先順位" class="nav-link" data-scroll-target="#演算の優先順位">演算の優先順位</a></li>
-  <li><a href="#演習" id="toc-演習" class="nav-link" data-scroll-target="#演習">演習</a></li>
-  </ul></li>
+  <li><a href="#dplyr-データ集計列の作成グループ化要約" id="toc-dplyr-データ集計列の作成グループ化要約" class="nav-link active" data-scroll-target="#dplyr-データ集計列の作成グループ化要約"><code>dplyr</code> データ集計：列の作成、グループ化、要約</a></li>
+  <li><a href="#mutate-新しい列を作成する" id="toc-mutate-新しい列を作成する" class="nav-link" data-scroll-target="#mutate-新しい列を作成する">mutate(): 新しい列を作成する</a></li>
+  <li><a href="#group_by-グループ化を宣言する" id="toc-group_by-グループ化を宣言する" class="nav-link" data-scroll-target="#group_by-グループ化を宣言する"><code>group_by()</code>: グループ化を宣言する</a></li>
+  <li><a href="#summarise-グループごとに要約する" id="toc-summarise-グループごとに要約する" class="nav-link" data-scroll-target="#summarise-グループごとに要約する"><code>summarise()</code>: グループごとに要約する</a></li>
+  <li><a href="#演習すべてを繋げてみよう" id="toc-演習すべてを繋げてみよう" class="nav-link" data-scroll-target="#演習すべてを繋げてみよう">演習：すべてを繋げてみよう</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/02-fundamentals.html">基本的な操作</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/20-dplyr.html">ミューテート・グループバイ・サマライズ</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">基本的な操作</h1>
+<h1 class="title">ミューテート・グループバイ・サマライズ</h1>
 </div>
 
 
@@ -290,94 +286,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="r-スクリプトとコメント" class="level2">
-<h2 class="anchored" data-anchor-id="r-スクリプトとコメント">R スクリプトとコメント</h2>
-<p>R スクリプトは、Rに実行させたい命令を記述したテキストファイルです。 コードが複雑になるほど、そのコードが何をしているのかを後から見返したときや、他の人と共有するときに分かりにくくなります。</p>
-<p>そこで重要になるのがコメントです。 コメントは、コード内にメモ書きを残すための機能で、Rはコメント部分をコードとして実行しません。</p>
-<p>Rでは、<code>#</code>（ハッシュマーク）から行末までがコメントとして扱われます。</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これはコメントです。この行はRによって無視されます。</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="co"># このように、コードの後にコメントを書くこともできます。</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p><strong>コメントを書く良い習慣：</strong></p>
+<section id="dplyr-データ集計列の作成グループ化要約" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr-データ集計列の作成グループ化要約"><code>dplyr</code> データ集計：列の作成、グループ化、要約</h2>
+<p>この資料では、データ分析のワークフローで最も重要ないくつかの「動詞」を学びます。 <code>dplyr</code> を使って新しい列を作成し、データをグループに分け、各グループの情報を要約する方法をマスターしましょう。</p>
 <ul>
-<li>なぜそのコードを書いたのかを説明する。</li>
-<li>複雑な処理の目的を記述する。</li>
-<li>将来の自分や他の人のために、コードの意図を明確にする。</li>
+<li><code>mutate()</code>: 既存の列から新しい列を作成する</li>
+<li><code>group_by()</code>: 分析の単位となるグループを宣言する</li>
+<li><code>summarise()</code>: グループごとにデータを要約する</li>
 </ul>
-</section>
-<section id="r-を使った算術演算" class="level2">
-<h2 class="anchored" data-anchor-id="r-を使った算術演算">R を使った算術演算</h2>
-<p>R は高性能な電卓としても利用できます。 基本的な算術演算は、見慣れた記号を使って簡単に行うことができます。</p>
-<section id="実際に計算してみましょう" class="level3">
-<h3 class="anchored" data-anchor-id="実際に計算してみましょう">実際に計算してみましょう</h3>
-<p>RStudioのスクリプトファイル（左上のウィンドウ）に以下のコードを書き、一行ずつ実行してみましょう。コードを実行するには、カーソルをその行に置き、<kbd title="ctrl-enter" aria-hidden="true">ctrl-enter</kbd><span class="visually-hidden">ctrl-enter</span>（Windows/Linux）または <kbd title="cmd-enter" aria-hidden="true">cmd-enter</kbd><span class="visually-hidden">cmd-enter</span>（Mac）を押します。</p>
+<p>この 3 つの関数は、データから洞察を得るために頻繁に組み合わせて使われます。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 足し算</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 8</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 引き算</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 掛け算</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 15</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 割り算</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">/</span><span class="dv">3</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.666667</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># べき乗</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 125</code></pre>
-</div>
-</div>
-<p>実行結果は、コンソール（通常は左下のウィンドウ）に表示されます。</p>
 </section>
-<section id="演算の優先順位" class="level3">
-<h3 class="anchored" data-anchor-id="演算の優先順位">演算の優先順位</h3>
-<p>R では、数学のルールと同様に、演算子に優先順位があります。</p>
+<section id="mutate-新しい列を作成する" class="level2">
+<h2 class="anchored" data-anchor-id="mutate-新しい列を作成する">mutate(): 新しい列を作成する</h2>
+<p><code>mutate()</code> は、既存の列を使って計算を行い、その結果を新しい列として追加する関数です。 スプレッドシートで新しい数式列を追加する作業に似ています。</p>
+<p>例1: <code>starwars</code> データセットで、身長(m)と体重(kg)からBMIを計算する</p>
+<p>身長 <code>height</code> は cm 単位なので、m 単位に変換 <code>height / 100</code> してから計算します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>starwars  <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height, mass)  <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">height_m =</span> height <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> mass <span class="sc">/</span> (height_m <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 5
+   name               height  mass height_m   bmi
+   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+ 1 Luke Skywalker        172    77     1.72  26.0
+ 2 C-3PO                 167    75     1.67  26.9
+ 3 R2-D2                  96    32     0.96  34.7
+ 4 Darth Vader           202   136     2.02  33.3
+ 5 Leia Organa           150    49     1.5   21.8
+ 6 Owen Lars             178   120     1.78  37.9
+ 7 Beru Whitesun Lars    165    75     1.65  27.5
+ 8 R5-D4                  97    32     0.97  34.0
+ 9 Biggs Darklighter     183    84     1.83  25.1
+10 Obi-Wan Kenobi        182    77     1.82  23.2
+# ℹ 77 more rows</code></pre>
+</div>
+</div>
+<p>ポイント: <code>mutate()</code> の中で作成した新しい列 (<code>height_m</code>) は、すぐに次の計算 (<code>bmi = ...</code>) で使うことができます。</p>
+</section>
+<section id="group_by-グループ化を宣言する" class="level2">
+<h2 class="anchored" data-anchor-id="group_by-グループ化を宣言する"><code>group_by()</code>: グループ化を宣言する</h2>
+<p><code>group_by()</code> は、データそのものを変更するのではなく、データに「これは〇〇ごとにグループ化されています」という印をつける関数です。 この後に続く <code>summarise()</code> などの処理が、データ全体に対してではなく、各グループに対して個別に行われるようになります。</p>
+<p>例: <code>starwars</code> データセットを <code>species</code> (種族) ごとにグループ化する</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">group_by</span>(species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+# Groups:   species [38]
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+ 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+ 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+ 9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+<p>このコードを実行しても、データの見た目はほとんど変わりません。 しかし、出力の先頭に <code>Groups: species</code> と表示され、Rが内部でデータをグループとして認識していることがわかります。</p>
+</section>
+<section id="summarise-グループごとに要約する" class="level2">
+<h2 class="anchored" data-anchor-id="summarise-グループごとに要約する"><code>summarise()</code>: グループごとに要約する</h2>
+<p><code>summarise()</code> (または <code>summarize</code>) は、データ（またはグループ化されたデータ）を1行の要約統計量にまとめる（集計する）関数です。 <code>group_by()</code> と組み合わせることで、その真価を発揮します。</p>
+<p>よく使われる要約関数：</p>
 <ul>
-<li><code>()</code>（括弧）の中が最優先</li>
-<li><code>^</code>（べき乗）</li>
-<li><code>*</code>（掛け算）</li>
-<li><code>/</code>（割り算）</li>
-<li><code>+</code>（足し算）</li>
-<li><code>-</code>（引き算）</li>
+<li><code>n()</code>: グループの行数（データ数）を数える</li>
+<li><code>mean()</code>: 平均値</li>
+<li><code>sd()</code>: 標準偏差</li>
+<li><code>min()</code>, <code>max()</code>: 最小値、最大値</li>
+<li><code>sum()</code>: 合計値</li>
 </ul>
+<p>重要: <code>mean()</code> などの計算で、データに <code>NA</code> (欠損値) が含まれていると結果が <code>NA</code> になってしまいます。 これを避けるために、引数に <code>na.rm = TRUE</code> (<code>NA</code>をリムーブ(無視)する) を指定するのが一般的です。</p>
+<p>例: 各 <code>species</code> (種族) ごとに、キャラクターの数、平均身長、平均体重を計算する</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 括弧がない場合、掛け算が先に計算される (5 * 2 = 10, 3 + 10 = 13)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
+<pre><code># A tibble: 38 × 4
+   species   count avg_height avg_mass
+   &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Aleena        1        79      15  
+ 2 Besalisk      1       198     102  
+ 3 Cerean        1       198      82  
+ 4 Chagrian      1       196     NaN  
+ 5 Clawdite      1       168      55  
+ 6 Droid         6       131.     69.8
+ 7 Dug           1       112      40  
+ 8 Ewok          1        88      20  
+ 9 Geonosian     1       183      80  
+10 Gungan        3       209.     74  
+# ℹ 28 more rows</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 括弧がある場合、括弧内が先に計算される (3 + 5 = 8, 8 * 2 = 16)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 16</code></pre>
 </div>
-</div>
+<p>この処理により、元のデータが種族ごとの1行のサマリーに変換されました。 <code>group_by()</code> で指定した列 (<code>species</code>) と、<code>summarise()</code> で作成した新しい要約列だけが結果として残ります。</p>
 </section>
-<section id="演習" class="level3">
-<h3 class="anchored" data-anchor-id="演習">演習</h3>
+<section id="演習すべてを繋げてみよう" class="level2">
+<h2 class="anchored" data-anchor-id="演習すべてを繋げてみよう">演習：すべてを繋げてみよう</h2>
+<p><strong>問題:</strong> キャラクターが2人以上登場する <code>homeworld</code> (出身惑星) について、惑星ごとの登場人数と、キャラクターの平均身長を計算してください。最後に、登場人数が多い順に結果を並べ替えてください。</p>
+<p><strong>ヒント:</strong></p>
 <ol type="1">
-<li><p>自分の年齢を 2 で割って、5 を足した結果を計算するRコードを書いてみましょう。 そのコードの上には、「年齢計算」というコメントを追加してください。</p></li>
-<li><p>100 から 25 を引き、その結果を 5 で割る計算を、括弧を使って一行のコードで書いてみましょう。</p></li>
+<li><code>homeworld</code> で <code>group_by()</code> する</li>
+<li>登場人数 (<code>count = n()</code>) と平均身長 (<code>avg_height = mean(...)</code>) を <code>summarise()</code> で計算する</li>
+<li><code>filter()</code> で <code>count</code> が2以上の行だけを絞り込む</li>
+<li><code>arrange(desc(count))</code> で並べ替える</li>
 </ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

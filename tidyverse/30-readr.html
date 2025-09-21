@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>基本的な操作 – 水産海洋データ解析演習I・II</title>
+<title>データの読み書き – 水産海洋データ解析演習I・II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,8 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-81907348be4d4a5d12dba001a5b3f1df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
-<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/02-fundamentals.html">基本的な操作</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/30-readr.html">データの読み書き</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -172,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link active">
+  <a href="../kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">基本的な操作</span></a>
   </div>
 </li>
@@ -225,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tidyverse/30-readr.html" class="sidebar-item-text sidebar-link">
+  <a href="../tidyverse/30-readr.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">データの読み書き</span></a>
   </div>
 </li>
@@ -258,22 +256,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-スクリプトとコメント" id="toc-r-スクリプトとコメント" class="nav-link active" data-scroll-target="#r-スクリプトとコメント">R スクリプトとコメント</a></li>
-  <li><a href="#r-を使った算術演算" id="toc-r-を使った算術演算" class="nav-link" data-scroll-target="#r-を使った算術演算">R を使った算術演算</a>
+  <li><a href="#read_csvwrite_csv-csvファイルの読み書き" id="toc-read_csvwrite_csv-csvファイルの読み書き" class="nav-link active" data-scroll-target="#read_csvwrite_csv-csvファイルの読み書き"><code>read_csv()</code>・<code>write_csv()</code>: CSVファイルの読み書き</a>
   <ul class="collapse">
-  <li><a href="#実際に計算してみましょう" id="toc-実際に計算してみましょう" class="nav-link" data-scroll-target="#実際に計算してみましょう">実際に計算してみましょう</a></li>
-  <li><a href="#演算の優先順位" id="toc-演算の優先順位" class="nav-link" data-scroll-target="#演算の優先順位">演算の優先順位</a></li>
-  <li><a href="#演習" id="toc-演習" class="nav-link" data-scroll-target="#演習">演習</a></li>
+  <li><a href="#herehere-の使い方" id="toc-herehere-の使い方" class="nav-link" data-scroll-target="#herehere-の使い方"><code>here::here()</code> の使い方</a></li>
   </ul></li>
+  <li><a href="#read_tsv-tsvファイルを読み込む" id="toc-read_tsv-tsvファイルを読み込む" class="nav-link" data-scroll-target="#read_tsv-tsvファイルを読み込む"><code>read_tsv()</code>: TSVファイルを読み込む</a></li>
+  <li><a href="#read_delim-一般的な区切り文字ファイル" id="toc-read_delim-一般的な区切り文字ファイル" class="nav-link" data-scroll-target="#read_delim-一般的な区切り文字ファイル"><code>read_delim()</code>: 一般的な区切り文字ファイル</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/02-fundamentals.html">基本的な操作</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/30-readr.html">データの読み書き</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">基本的な操作</h1>
+<h1 class="title">データの読み書き</h1>
 </div>
 
 
@@ -290,94 +287,237 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="r-スクリプトとコメント" class="level2">
-<h2 class="anchored" data-anchor-id="r-スクリプトとコメント">R スクリプトとコメント</h2>
-<p>R スクリプトは、Rに実行させたい命令を記述したテキストファイルです。 コードが複雑になるほど、そのコードが何をしているのかを後から見返したときや、他の人と共有するときに分かりにくくなります。</p>
-<p>そこで重要になるのがコメントです。 コメントは、コード内にメモ書きを残すための機能で、Rはコメント部分をコードとして実行しません。</p>
-<p>Rでは、<code>#</code>（ハッシュマーク）から行末までがコメントとして扱われます。</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># これはコメントです。この行はRによって無視されます。</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="co"># このように、コードの後にコメントを書くこともできます。</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p><strong>コメントを書く良い習慣：</strong></p>
+<p>データ分析の最初のステップは、分析したいデータをRに読み込むことです。 <code>readr</code> は <code>tidyverse</code> の一部で、CSV ファイルのような「長方形」のテキストデータを R に高速かつ正確に読み込むためのパッケージです。</p>
+<p><strong>Base R</strong> にも <code>read.csv()</code> という関数がありますが、<code>readr</code> を使うことには以下のようなメリットがあります。</p>
 <ul>
-<li>なぜそのコードを書いたのかを説明する。</li>
-<li>複雑な処理の目的を記述する。</li>
-<li>将来の自分や他の人のために、コードの意図を明確にする。</li>
+<li>高速である</li>
+<li>読み込み中に進捗バーが表示される</li>
+<li>文字列を自動でファクター型に変換しない</li>
+<li>より賢く列の型を推測してくれる</li>
 </ul>
-</section>
-<section id="r-を使った算術演算" class="level2">
-<h2 class="anchored" data-anchor-id="r-を使った算術演算">R を使った算術演算</h2>
-<p>R は高性能な電卓としても利用できます。 基本的な算術演算は、見慣れた記号を使って簡単に行うことができます。</p>
-<section id="実際に計算してみましょう" class="level3">
-<h3 class="anchored" data-anchor-id="実際に計算してみましょう">実際に計算してみましょう</h3>
-<p>RStudioのスクリプトファイル（左上のウィンドウ）に以下のコードを書き、一行ずつ実行してみましょう。コードを実行するには、カーソルをその行に置き、<kbd title="ctrl-enter" aria-hidden="true">ctrl-enter</kbd><span class="visually-hidden">ctrl-enter</span>（Windows/Linux）または <kbd title="cmd-enter" aria-hidden="true">cmd-enter</kbd><span class="visually-hidden">cmd-enter</span>（Mac）を押します。</p>
+<section id="read_csvwrite_csv-csvファイルの読み書き" class="level2">
+<h2 class="anchored" data-anchor-id="read_csvwrite_csv-csvファイルの読み書き"><code>read_csv()</code>・<code>write_csv()</code>: CSVファイルの読み書き</h2>
+<p>最もよく使われるのが <code>read_csv()</code> 関数です。 これは、カンマ区切り（Comma Separated Values）のファイルを読み込み、<code>tibble</code> という <code>tidyverse</code> で使われるデータ形式に変換します。</p>
+<p>まずは <code>tidyverse</code> を読み込みます。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 足し算</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>基本的な使い方</strong></p>
+<p>使い方は非常にシンプルで、ファイルへのパス（場所）を引数として渡すだけです。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 例として、まず R のデータフレームをCSVファイルとして書き出してみます</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="fl">85.5</span>, <span class="fl">92.0</span>, <span class="fl">78.5</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>CSV を書き込むには、<code>write_csv()</code> を使います。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 書き出したい tibble と書き込みたいパスとファイル名を渡します</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(sample_data, <span class="st">"my_sample_data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>CSV のを読み込むには、<code>read_csv()</code> を使います。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 今書き出したCSVファイルを読み込む</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"my_sample_data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): name
+dbl (2): id, score
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 読み込んだ結果を確認</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 8</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 引き算</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 掛け算</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 15</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 割り算</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">/</span><span class="dv">3</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.666667</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># べき乗</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 125</code></pre>
+<pre><code># A tibble: 3 × 3
+     id name    score
+  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+1     1 Alice    85.5
+2     2 Bob      92  
+3     3 Charlie  78.5</code></pre>
 </div>
 </div>
-<p>実行結果は、コンソール（通常は左下のウィンドウ）に表示されます。</p>
-</section>
-<section id="演算の優先順位" class="level3">
-<h3 class="anchored" data-anchor-id="演算の優先順位">演算の優先順位</h3>
-<p>R では、数学のルールと同様に、演算子に優先順位があります。</p>
+<p><code>read_csv()</code> を実行すると、各列がどのデータ型（chr, dbl, int など）として認識されたかがコンソールに表示されます。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>ファイルパスの問題
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rスクリプトで <code>read_csv("data/my_sample_data.csv")</code> のようにファイルパスを指定すると、そのスクリプトを誰かと共有したり、別のPCで実行したり、ファイルの場所を移動したりした際に、パスが通らなくなりエラーが頻発します。</p>
+<p>これは、Rがどのフォルダを基準にファイルを探しているか（ワーキングディレクトリ）が、実行環境によって変わってしまうためです。この問題を解決するために <code>setwd("C:/Users/...")</code> のようにワーキングディレクトリを固定する方法もありますが、これは他の人のPCでは動かないため、悪い習慣とされています。</p>
+<section id="herehere-がすべてを解決" class="level2">
+<h2 class="anchored" data-anchor-id="herehere-がすべてを解決"><code>here::here()</code> がすべてを解決</h2>
+<p><code>here</code> パッケージは、この問題をシンプルかつエレガントに解決します。</p>
+<p>メリット:</p>
 <ul>
-<li><code>()</code>（括弧）の中が最優先</li>
-<li><code>^</code>（べき乗）</li>
-<li><code>*</code>（掛け算）</li>
-<li><code>/</code>（割り算）</li>
-<li><code>+</code>（足し算）</li>
-<li><code>-</code>（引き算）</li>
+<li><code>setwd()</code> が不要になる: <code>setwd()</code> をスクリプトの冒頭に書く必要が一切なくなります。</li>
+<li>どこでも動く: あなたの PC でも、同僚のPCでも、サーバー上でも、スクリプトを移動しても、同じコードがエラーなく動きます。</li>
+<li>共同作業が楽になる: <strong>Git</strong> などでプロジェクトを共有する際に、ファイルパスの違いを気にする必要がありません。</li>
+<li>直感的: プロジェクトのルート（一番上の階層）を基準にパスを組み立てるため、非常に分かりやすいです。</li>
 </ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 括弧がない場合、掛け算が先に計算される (5 * 2 = 10, 3 + 10 = 13)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 括弧がある場合、括弧内が先に計算される (3 + 5 = 8, 8 * 2 = 16)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 16</code></pre>
-</div>
-</div>
+<p><code>hereの仕組み</code>: <code>here</code> は、現在のスクリプトの場所から上の階層に向かって <code>.Rproj</code> ファイルや <code>.git</code> フォルダを探します。それらが見つかった場所を「プロジェクトのルート」と判断し、そこを基準点としてファイルへの絶対パスを安全に構築してくれるのです。</p>
 </section>
-<section id="演習" class="level3">
-<h3 class="anchored" data-anchor-id="演習">演習</h3>
+</div>
+</div>
+<section id="herehere-の使い方" class="level3">
+<h3 class="anchored" data-anchor-id="herehere-の使い方"><code>here::here()</code> の使い方</h3>
+<p><code>here()</code> を使うための最も重要な前提は、作業を <code>RStudioプロジェクト</code> (<code>.Rproj</code> ファイル) で管理することです。</p>
+<p>まだインストールしていない場合は、一度だけコンソールで実行します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>では、ファイルパスを組み立てましょう。</p>
+<p><code>here("フォルダ名", "ファイル名")</code> のように、プロジェクトのルートからの道のりをカンマで区切って指定します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_sample_data.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(sample_data, filename)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filename)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): name
+dbl (2): id, score
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+     id name    score
+  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+1     1 Alice    85.5
+2     2 Bob      92  
+3     3 Charlie  78.5</code></pre>
+</div>
+</div>
+<div class="callout-ntoe">
+<p><code>::</code> は、特定のパッケージに属する関数を直接指定して呼び出すための演算子です。 <code>here::here()</code>は、「<code>here</code> という名前のパッケージの中にある <code>here</code> という名前の関数」という意味になります。</p>
+<p>なぜ <code>::</code> を使うのか？</p>
+<p><code>::</code> を使うことには、主に2つの大きなメリットがあります。</p>
 <ol type="1">
-<li><p>自分の年齢を 2 で割って、5 を足した結果を計算するRコードを書いてみましょう。 そのコードの上には、「年齢計算」というコメントを追加してください。</p></li>
-<li><p>100 から 25 を引き、その結果を 5 で割る計算を、括弧を使って一行のコードで書いてみましょう。</p></li>
+<li>関数の名前の衝突（競合）を避ける</li>
 </ol>
-
-
+<p>Rでは、異なるパッケージが同じ名前の関数を持っていることがあります。 例えば、<code>dplyr</code> パッケージとRの基本機能（<code>stats</code> パッケージ）は、どちらも <code>filter()</code> という名前の関数を持っています。</p>
+<p>もし <code>library(dplyr)</code>を実行せずに <code>filter()</code> を使うと、意図せず基本機能の <code>filter()</code> が動いてしまうかもしれません。<code>dplyr::filter()</code> と書けば、「<code>dplyr</code> の <code>filter()</code> を使います」と明示的に宣言できるため、このような混乱やエラーを防げます。</p>
+<ol start="2" type="1">
+<li>コードの可読性が上がる</li>
+</ol>
+<p><code>here::here()</code> と書かれているコードを見れば、誰でも「ああ、これは <code>here</code> パッケージの機能を使っているんだな」と一目で分かります。<code>library()</code> で一度にたくさんのパッケージを読み込むと、どの関数がどのパッケージ由来なのか分かりにくくなることがあります。</p>
+</div>
 </section>
+</section>
+<section id="read_tsv-tsvファイルを読み込む" class="level2">
+<h2 class="anchored" data-anchor-id="read_tsv-tsvファイルを読み込む"><code>read_tsv()</code>: TSVファイルを読み込む</h2>
+<p><code>read_tsv()</code> は、タブ区切り（Tab Separated Values）のファイルを読み込むための関数です。 基本的な使い方は <code>read_csv()</code> と全く同じです。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">=</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_sample_data.tsv"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># タブ区切りのファイルを作成</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_tsv</span>(sample_data, filename)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># TSVファイルを読み込む</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>df_tsv <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(filename)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): name
+dbl (2): id, score
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+     id name    score
+  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+1     1 Alice    85.5
+2     2 Bob      92  
+3     3 Charlie  78.5</code></pre>
+</div>
+</div>
+</section>
+<section id="read_delim-一般的な区切り文字ファイル" class="level2">
+<h2 class="anchored" data-anchor-id="read_delim-一般的な区切り文字ファイル"><code>read_delim()</code>: 一般的な区切り文字ファイル</h2>
+<p>もしあなたのデータがカンマやタブではなく、セミコロン(;)やパイプ(|)のような特殊な文字で区切られている場合は、<code>read_delim()</code> を使います。 <code>delim</code> 引数で区切り文字を指定します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">=</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_sample_data.txt"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># セミコロン区切りのファイルを作成</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(sample_data, filename, <span class="at">delim =</span> <span class="st">";"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># セミコロン区切りのファイルを読み込む</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>df_delim <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(filename, <span class="at">delim =</span> <span class="st">";"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ";"
+chr (1): name
+dbl (2): id, score
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_delim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+     id name    score
+  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+1     1 Alice    85.5
+2     2 Bob      92  
+3     3 Charlie  78.5</code></pre>
+</div>
+</div>
+<p><strong>列の型を自分で指定する</strong></p>
+<p><code>readr</code> は賢く列の型を推測してくれますが、時々間違えることもあります（例：数値のはずが文字列として読み込まれる）。 その場合は <code>col_types</code> 引数を使って、正しい型を手動で指定できます。</p>
+<p><code>cols()</code> 関数の中に、列ごとに型を指定します。</p>
+<ul>
+<li><code>col_character()</code>: 文字列型</li>
+<li><code>col_integer()</code>: 整数型</li>
+<li><code>col_double()</code>: 小数を含む数値型</li>
+<li><code>col_logical()</code>: 論理値型 (<code>TRUE/FALSE</code>)</li>
+</ul>
+<p>例: <code>id</code> を文字列として、<code>score</code> を整数として読み込んでみる</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">=</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_sample_data.csv"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_manual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  filename,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">score =</span> <span class="fu">col_integer</span>()</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_manual</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  id    name    score
+  &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;
+1 1     Alice      NA
+2 2     Bob        92
+3 3     Charlie    NA</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

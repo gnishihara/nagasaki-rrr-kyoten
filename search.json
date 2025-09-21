@@ -1,5 +1,104 @@
 [
   {
+    "objectID": "ggplot2/01-about.html",
+    "href": "ggplot2/01-about.html",
+    "title": "作図について",
+    "section": "",
+    "text": "R での作図には、大きく分けて2つの主要な方法があります。 R に元から組み込まれている Base R の作図システムと、tidyverse エコシステムの中核である ggplot2 パッケージです。",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "作図について"
+    ]
+  },
+  {
+    "objectID": "ggplot2/01-about.html#base-rでの作図",
+    "href": "ggplot2/01-about.html#base-rでの作図",
+    "title": "作図について",
+    "section": "Base Rでの作図",
+    "text": "Base Rでの作図\nR が誕生したときから存在する、伝統的な作図システムです。 plot() 関数でキャンバス (canvas, base layer) を用意し、その上に points() で点を追加し、lines() で線を追加します。\nメリット\n\n追加パッケージが不要: R をインストールすればすぐに使えます。\n手軽で高速: シンプルなグラフを素早く描きたい場合に便利です。\n柔軟性が高い: 細かい部分まで自由にカスタマイズできます。\n\nデメリット\n\nコードが複雑になりがち: 見栄えの良い、複雑なグラフを作ろうとすると、コードが長くなりがちです。\n見栄え: デフォルト（初期設定）の見た目は、ggplot2 に比べてやや古風な印象を受けることがあります。\nデータ構造の意識が必要: カテゴリごとに色を分けるといった処理を、自分で考えながらコードを書く必要があります。\n\n\n# carsデータセットを使い、スピードと停止距離の散布図を描く\n\nplot(cars$speed, cars$dist,\n     main = \"車の速度と停止距離 (Base R)\",\n     xlab = \"速度 (mph)\",\n     ylab = \"停止距離 (ft)\",\n     pch = 19,      # 点の形を塗りつぶしの円に\n     col = \"blue\"   # 点の色を青に\n)",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "作図について"
+    ]
+  },
+  {
+    "objectID": "ggplot2/01-about.html#ggplot2-での作図",
+    "href": "ggplot2/01-about.html#ggplot2-での作図",
+    "title": "作図について",
+    "section": "ggplot2 での作図",
+    "text": "ggplot2 での作図\nggplot2 は、tidyverseの一部として提供されている、非常に強力で人気の高い作図パッケージです。「グラフィックスの文法 (Grammar of Graphics)」という一貫した哲学に基づいており、「グラフとは、データ、座標系、そして点や線といった図形要素（ジオメトリ）の組み合わせである」と考えます。\nLEGO ブロックのように、データ、エステティック (aesthetics) マッピング（変数をx軸、y軸、色、形などに割り当てる）、ジオメトリ (geometry) のパーツを + でつなぎ合わせてグラフを構築します。\nメリット\n\n一貫した文法: 一度文法を覚えれば、どんな種類のグラフでも同じ考え方で作成できます。\n美しい仕上がり: デフォルトでも洗練された美しいグラフが描画されます。\nデータ処理に強い: カテゴリごとの色分けや、グラフの分割（ファセット）が非常に簡単かつ直感的に行えます。\nコードの可読性が高い: 複雑なグラフでも、処理のレイヤーが + で繋がっているためコードが読みやすいです。\n\nデメリット\n\nパッケージの読み込みが必要: library(ggplot2) または library(tidyverse) が必要です。\n初期学習コスト aes()やgeom_\\*()といった独自の「文法」を最初に学ぶ必要があります。\n単純なグラフには少し冗長: ごく単純なグラフを1つだけ描きたい場合、Base R よりコードが長くなることもあります。\n\n\nlibrary(ggplot2)\n# 同じ散布図をggplot2で描く\nggplot(data = cars, aes(x = speed, y = dist)) +\n  geom_point(color = \"blue\", size = 3) +\n  labs(\n    title = \"車の速度と停止距離 (ggplot2)\",\n    x = \"速度 (mph)\",\n    y = \"停止距離 (ft)\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "作図について"
+    ]
+  },
+  {
+    "objectID": "tidyverse/20-dplyr.html",
+    "href": "tidyverse/20-dplyr.html",
+    "title": "ミューテート・グループバイ・サマライズ",
+    "section": "",
+    "text": "この資料では、データ分析のワークフローで最も重要ないくつかの「動詞」を学びます。 dplyr を使って新しい列を作成し、データをグループに分け、各グループの情報を要約する方法をマスターしましょう。\n\nmutate(): 既存の列から新しい列を作成する\ngroup_by(): 分析の単位となるグループを宣言する\nsummarise(): グループごとにデータを要約する\n\nこの 3 つの関数は、データから洞察を得るために頻繁に組み合わせて使われます。\n\nlibrary(tidyverse)",
+    "crumbs": [
+      "tidyverse",
+      "ミューテート・グループバイ・サマライズ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/20-dplyr.html#dplyr-データ集計列の作成グループ化要約",
+    "href": "tidyverse/20-dplyr.html#dplyr-データ集計列の作成グループ化要約",
+    "title": "ミューテート・グループバイ・サマライズ",
+    "section": "",
+    "text": "この資料では、データ分析のワークフローで最も重要ないくつかの「動詞」を学びます。 dplyr を使って新しい列を作成し、データをグループに分け、各グループの情報を要約する方法をマスターしましょう。\n\nmutate(): 既存の列から新しい列を作成する\ngroup_by(): 分析の単位となるグループを宣言する\nsummarise(): グループごとにデータを要約する\n\nこの 3 つの関数は、データから洞察を得るために頻繁に組み合わせて使われます。\n\nlibrary(tidyverse)",
+    "crumbs": [
+      "tidyverse",
+      "ミューテート・グループバイ・サマライズ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/20-dplyr.html#mutate-新しい列を作成する",
+    "href": "tidyverse/20-dplyr.html#mutate-新しい列を作成する",
+    "title": "ミューテート・グループバイ・サマライズ",
+    "section": "mutate(): 新しい列を作成する",
+    "text": "mutate(): 新しい列を作成する\nmutate() は、既存の列を使って計算を行い、その結果を新しい列として追加する関数です。 スプレッドシートで新しい数式列を追加する作業に似ています。\n例1: starwars データセットで、身長(m)と体重(kg)からBMIを計算する\n身長 height は cm 単位なので、m 単位に変換 height / 100 してから計算します。\n\nstarwars  |&gt; \n  select(name, height, mass)  |&gt; \n  mutate(\n    height_m = height / 100,\n    bmi = mass / (height_m ^ 2)\n  )\n\n# A tibble: 87 × 5\n   name               height  mass height_m   bmi\n   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;\n 1 Luke Skywalker        172    77     1.72  26.0\n 2 C-3PO                 167    75     1.67  26.9\n 3 R2-D2                  96    32     0.96  34.7\n 4 Darth Vader           202   136     2.02  33.3\n 5 Leia Organa           150    49     1.5   21.8\n 6 Owen Lars             178   120     1.78  37.9\n 7 Beru Whitesun Lars    165    75     1.65  27.5\n 8 R5-D4                  97    32     0.97  34.0\n 9 Biggs Darklighter     183    84     1.83  25.1\n10 Obi-Wan Kenobi        182    77     1.82  23.2\n# ℹ 77 more rows\n\n\nポイント: mutate() の中で作成した新しい列 (height_m) は、すぐに次の計算 (bmi = ...) で使うことができます。",
+    "crumbs": [
+      "tidyverse",
+      "ミューテート・グループバイ・サマライズ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/20-dplyr.html#group_by-グループ化を宣言する",
+    "href": "tidyverse/20-dplyr.html#group_by-グループ化を宣言する",
+    "title": "ミューテート・グループバイ・サマライズ",
+    "section": "group_by(): グループ化を宣言する",
+    "text": "group_by(): グループ化を宣言する\ngroup_by() は、データそのものを変更するのではなく、データに「これは〇〇ごとにグループ化されています」という印をつける関数です。 この後に続く summarise() などの処理が、データ全体に対してではなく、各グループに対して個別に行われるようになります。\n例: starwars データセットを species (種族) ごとにグループ化する\n\nstarwars |&gt; group_by(species)\n\n# A tibble: 87 × 14\n# Groups:   species [38]\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…\n 9 Biggs D…    183    84 black      light      brown           24   male  mascu…\n10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n\nこのコードを実行しても、データの見た目はほとんど変わりません。 しかし、出力の先頭に Groups: species と表示され、Rが内部でデータをグループとして認識していることがわかります。",
+    "crumbs": [
+      "tidyverse",
+      "ミューテート・グループバイ・サマライズ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/20-dplyr.html#summarise-グループごとに要約する",
+    "href": "tidyverse/20-dplyr.html#summarise-グループごとに要約する",
+    "title": "ミューテート・グループバイ・サマライズ",
+    "section": "summarise(): グループごとに要約する",
+    "text": "summarise(): グループごとに要約する\nsummarise() (または summarize) は、データ（またはグループ化されたデータ）を1行の要約統計量にまとめる（集計する）関数です。 group_by() と組み合わせることで、その真価を発揮します。\nよく使われる要約関数：\n\nn(): グループの行数（データ数）を数える\nmean(): 平均値\nsd(): 標準偏差\nmin(), max(): 最小値、最大値\nsum(): 合計値\n\n重要: mean() などの計算で、データに NA (欠損値) が含まれていると結果が NA になってしまいます。 これを避けるために、引数に na.rm = TRUE (NAをリムーブ(無視)する) を指定するのが一般的です。\n例: 各 species (種族) ごとに、キャラクターの数、平均身長、平均体重を計算する\n\nstarwars |&gt; \n  group_by(species) |&gt; \n  summarise(\n    count = n(),\n    avg_height = mean(height, na.rm = TRUE),\n    avg_mass = mean(mass, na.rm = TRUE)\n  )\n\n# A tibble: 38 × 4\n   species   count avg_height avg_mass\n   &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n 1 Aleena        1        79      15  \n 2 Besalisk      1       198     102  \n 3 Cerean        1       198      82  \n 4 Chagrian      1       196     NaN  \n 5 Clawdite      1       168      55  \n 6 Droid         6       131.     69.8\n 7 Dug           1       112      40  \n 8 Ewok          1        88      20  \n 9 Geonosian     1       183      80  \n10 Gungan        3       209.     74  \n# ℹ 28 more rows\n\n\nこの処理により、元のデータが種族ごとの1行のサマリーに変換されました。 group_by() で指定した列 (species) と、summarise() で作成した新しい要約列だけが結果として残ります。",
+    "crumbs": [
+      "tidyverse",
+      "ミューテート・グループバイ・サマライズ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/20-dplyr.html#演習すべてを繋げてみよう",
+    "href": "tidyverse/20-dplyr.html#演習すべてを繋げてみよう",
+    "title": "ミューテート・グループバイ・サマライズ",
+    "section": "演習：すべてを繋げてみよう",
+    "text": "演習：すべてを繋げてみよう\n問題: キャラクターが2人以上登場する homeworld (出身惑星) について、惑星ごとの登場人数と、キャラクターの平均身長を計算してください。最後に、登場人数が多い順に結果を並べ替えてください。\nヒント:\n\nhomeworld で group_by() する\n登場人数 (count = n()) と平均身長 (avg_height = mean(...)) を summarise() で計算する\nfilter() で count が2以上の行だけを絞り込む\narrange(desc(count)) で並べ替える",
+    "crumbs": [
+      "tidyverse",
+      "ミューテート・グループバイ・サマライズ"
+    ]
+  },
+  {
     "objectID": "tidyverse/01-about.html",
     "href": "tidyverse/01-about.html",
     "title": "tidyverseについて",
@@ -389,6 +488,149 @@
     "crumbs": [
       "基礎",
       "R関数の使い方と作り方"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html",
+    "href": "tidyverse/10-dplyr.html",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "",
+    "text": "では、dplyr パッケージの中心的な機能である「データのサブセット化」と「順序の整理」を紹介します。 tidyverse を読み込んで、R に組み込まれている starwars データセットを使いながら、以下の4つの基本的な「動詞」をマスターしましょう。\n\nselect(): 列を選ぶ\nfilter(): 行を絞り込む\narrange(): 行を並べ替える\nrelocate(): 列の順序を変更する\n\n\nlibrary(tidyverse)",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#dplyr-基本操作データの選択並べ替え整形",
+    "href": "tidyverse/10-dplyr.html#dplyr-基本操作データの選択並べ替え整形",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "",
+    "text": "では、dplyr パッケージの中心的な機能である「データのサブセット化」と「順序の整理」を紹介します。 tidyverse を読み込んで、R に組み込まれている starwars データセットを使いながら、以下の4つの基本的な「動詞」をマスターしましょう。\n\nselect(): 列を選ぶ\nfilter(): 行を絞り込む\narrange(): 行を並べ替える\nrelocate(): 列の順序を変更する\n\n\nlibrary(tidyverse)",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#select-列を選ぶ",
+    "href": "tidyverse/10-dplyr.html#select-列を選ぶ",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "select(): 列を選ぶ",
+    "text": "select(): 列を選ぶ\nselect() は、ティブル (tibble) から必要な列だけを選び出すための関数です。\n分析に必要な列だけを残したり、特定の列を除外したりする場合に使います。\n\n# starwarsデータから、名前、身長、体重の列だけを選ぶ\nstarwars |&gt; select(name, height, mass)\n\n# A tibble: 87 × 3\n   name               height  mass\n   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;\n 1 Luke Skywalker        172    77\n 2 C-3PO                 167    75\n 3 R2-D2                  96    32\n 4 Darth Vader           202   136\n 5 Leia Organa           150    49\n 6 Owen Lars             178   120\n 7 Beru Whitesun Lars    165    75\n 8 R5-D4                  97    32\n 9 Biggs Darklighter     183    84\n10 Obi-Wan Kenobi        182    77\n# ℹ 77 more rows\n\n# name列からmass列まで、連続した列を選ぶ\nstarwars |&gt; select(name:mass)\n\n# A tibble: 87 × 3\n   name               height  mass\n   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;\n 1 Luke Skywalker        172    77\n 2 C-3PO                 167    75\n 3 R2-D2                  96    32\n 4 Darth Vader           202   136\n 5 Leia Organa           150    49\n 6 Owen Lars             178   120\n 7 Beru Whitesun Lars    165    75\n 8 R5-D4                  97    32\n 9 Biggs Darklighter     183    84\n10 Obi-Wan Kenobi        182    77\n# ℹ 77 more rows\n\n# hair_color列を「除外」する\nstarwars |&gt; select(-hair_color)\n\n# A tibble: 87 × 13\n   name      height  mass skin_color eye_color birth_year sex   gender homeworld\n   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    \n 1 Luke Sky…    172    77 fair       blue            19   male  mascu… Tatooine \n 2 C-3PO        167    75 gold       yellow         112   none  mascu… Tatooine \n 3 R2-D2         96    32 white, bl… red             33   none  mascu… Naboo    \n 4 Darth Va…    202   136 white      yellow          41.9 male  mascu… Tatooine \n 5 Leia Org…    150    49 light      brown           19   fema… femin… Alderaan \n 6 Owen Lars    178   120 light      blue            52   male  mascu… Tatooine \n 7 Beru Whi…    165    75 light      blue            47   fema… femin… Tatooine \n 8 R5-D4         97    32 white, red red             NA   none  mascu… Tatooine \n 9 Biggs Da…    183    84 light      brown           24   male  mascu… Tatooine \n10 Obi-Wan …    182    77 fair       blue-gray       57   male  mascu… Stewjon  \n# ℹ 77 more rows\n# ℹ 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,\n#   starships &lt;list&gt;\n\n# \"color\"で終わる名前の列をすべて選ぶ\nstarwars |&gt; select(ends_with(\"color\"))\n\n# A tibble: 87 × 3\n   hair_color    skin_color  eye_color\n   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    \n 1 blond         fair        blue     \n 2 &lt;NA&gt;          gold        yellow   \n 3 &lt;NA&gt;          white, blue red      \n 4 none          white       yellow   \n 5 brown         light       brown    \n 6 brown, grey   light       blue     \n 7 brown         light       blue     \n 8 &lt;NA&gt;          white, red  red      \n 9 black         light       brown    \n10 auburn, white fair        blue-gray\n# ℹ 77 more rows\n\n\n\nselect() で使える便利なヘルパー関数\nselect() で一つずつ列の名前を指定するのは、列が多い場合に大変です。 dplyr には、特定のパターンに一致する列名を効率よく選ぶためのヘルパー関数が用意されており、これらを select() や {relocate()} の中で使うことができます。\n\neverything(): まだ選択されていない残りのすべての列を選びます。\nstarts_with(): 指定した文字で始まる名前の列をすべて選びます。\nends_with(): 指定した文字で終わる名前の列をすべて選びます。\ncontains(): 名前に指定した文字が含まれる列をすべて選びます（位置は問いません）。\nmatches(): 正規表現 (Regular Expression) という、文字列の高度なパターンマッチング言語を使って列名を選びます。contains() などが単純な単語を探すのに対し、matches() は「A または B を含む」や「s で始まり t で終わる」といった、より複雑なルールを指定できます。\nwhere(): 列のデータ型（数値、文字列など）に基づいて列を選ぶ、少し高度ですが強力なヘルパーです。\n\nwhere(is.numeric): 数値型の列をすべて選びます。\nwhere(is.character): 文字列型の列をすべて選びます。\n\n\n\n# 文字列型の列をすべて選ぶ\nstarwars |&gt; select(where(is.character))\n\n# A tibble: 87 × 8\n   name           hair_color skin_color eye_color sex   gender homeworld species\n   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  \n 1 Luke Skywalker blond      fair       blue      male  mascu… Tatooine  Human  \n 2 C-3PO          &lt;NA&gt;       gold       yellow    none  mascu… Tatooine  Droid  \n 3 R2-D2          &lt;NA&gt;       white, bl… red       none  mascu… Naboo     Droid  \n 4 Darth Vader    none       white      yellow    male  mascu… Tatooine  Human  \n 5 Leia Organa    brown      light      brown     fema… femin… Alderaan  Human  \n 6 Owen Lars      brown, gr… light      blue      male  mascu… Tatooine  Human  \n 7 Beru Whitesun… brown      light      blue      fema… femin… Tatooine  Human  \n 8 R5-D4          &lt;NA&gt;       white, red red       none  mascu… Tatooine  Droid  \n 9 Biggs Darklig… black      light      brown     male  mascu… Tatooine  Human  \n10 Obi-Wan Kenobi auburn, w… fair       blue-gray male  mascu… Stewjon   Human  \n# ℹ 77 more rows",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#filter-行を絞り込む",
+    "href": "tidyverse/10-dplyr.html#filter-行を絞り込む",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "filter(): 行を絞り込む",
+    "text": "filter(): 行を絞り込む\nfilter() は、指定した条件に一致する行だけを絞り込むための関数です。\nデータの特定のサブセット（例：特定の種族のキャラクター、特定の条件を満たす観測など）を抽出する際に使います。\n\n# 種族 (species) が \"Human\" のキャラクターだけを絞り込む\nstarwars |&gt; filter(species == \"Human\")\n\n# A tibble: 35 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 3 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 4 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 5 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 6 Biggs D…    183    84 black      light      brown           24   male  mascu…\n 7 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n 8 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…\n 9 Wilhuff…    180    NA auburn, g… fair       blue            64   male  mascu…\n10 Han Solo    180    80 brown      fair       brown           29   male  mascu…\n# ℹ 25 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# 身長 (height) が180cmより大きいキャラクターを絞り込む\nstarwars |&gt; filter(height &gt; 180)\n\n# A tibble: 39 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Darth V…    202 136   none       white      yellow          41.9 male  mascu…\n 2 Biggs D…    183  84   black      light      brown           24   male  mascu…\n 3 Obi-Wan…    182  77   auburn, w… fair       blue-gray       57   male  mascu…\n 4 Anakin …    188  84   blond      fair       blue            41.9 male  mascu…\n 5 Chewbac…    228 112   brown      unknown    blue           200   male  mascu…\n 6 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…\n 7 IG-88       200 140   none       metal      red             15   none  mascu…\n 8 Bossk       190 113   none       green      red             53   male  mascu…\n 9 Qui-Gon…    193  89   brown      fair       blue            92   male  mascu…\n10 Nute Gu…    191  90   none       mottled g… red             NA   male  mascu…\n# ℹ 29 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# 複数の条件を組み合わせる (種族がHuman「かつ」出身惑星がTatooine)\n# カンマ(,)は「かつ」(AND) を意味します\nstarwars |&gt;  filter(species == \"Human\", homeworld == \"Tatooine\")\n\n# A tibble: 8 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n3 Owen Lars    178   120 brown, gr… light      blue            52   male  mascu…\n4 Beru Whi…    165    75 brown      light      blue            47   fema… femin…\n5 Biggs Da…    183    84 black      light      brown           24   male  mascu…\n6 Anakin S…    188    84 blond      fair       blue            41.9 male  mascu…\n7 Shmi Sky…    163    NA black      fair       brown           72   fema… femin…\n8 Cliegg L…    183    NA brown      fair       blue            82   male  mascu…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# 複数の条件のいずれかを満たす (髪の色が \"blond\" 「または」 \"brown\")\n# | は「または」(OR) を意味します\nstarwars |&gt;  filter(hair_color == \"blond\" | hair_color == \"brown\")\n\n# A tibble: 21 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 3 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 4 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…\n 5 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…\n 6 Han Solo    180    80 brown      fair       brown           29   male  mascu…\n 7 Wedge A…    170    77 brown      fair       hazel           21   male  mascu…\n 8 Jek Ton…    180   110 brown      fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  \n 9 Arvel C…     NA    NA brown      fair       brown           NA   male  mascu…\n10 Wicket …     88    20 brown      brown      brown            8   male  mascu…\n# ℹ 11 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#filter-のヘルパー関数",
+    "href": "tidyverse/10-dplyr.html#filter-のヘルパー関数",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "filter() のヘルパー関数",
+    "text": "filter() のヘルパー関数\n\nis.na(): データ分析では欠損値 NA (Not Available) の扱いは非常に重要です。is.na() を使うと、特定の列が NA である行、あるいは NA ではない行を簡単に絞り込めます。\nstr_detect(): stringr パッケージ (tidyverse に含まれる) の関数で、文字列の中に 特定のパターンが含まれているか を判定します。完全一致 (==) よりも柔軟な検索が可能です。\nbetween(): 数値がある範囲の 間にあるか を判定します。列名 &gt;= 最小値 & 列名 &lt;= 最大値 と書くよりも直感的で分かりやすいです。\n%in%: | (または) を何度も書く代わりに、指定した複数の値の いずれかに含まれるか を判定します。コードが非常にすっきりと読みやすくなります。\n\n\nstarwars |&gt; filter(is.na(mass))\n\n# A tibble: 28 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Wilhuff…    180    NA auburn, g… fair       blue              64 male  mascu…\n 2 Mon Mot…    150    NA auburn     fair       blue              48 fema… femin…\n 3 Arvel C…     NA    NA brown      fair       brown             NA male  mascu…\n 4 Finis V…    170    NA blond      fair       blue              91 male  mascu…\n 5 Rugor N…    206    NA none       green      orange            NA male  mascu…\n 6 Ric Olié    183    NA brown      fair       blue              NA male  mascu…\n 7 Watto       137    NA black      blue, grey yellow            NA male  mascu…\n 8 Quarsh …    183    NA black      dark       brown             62 male  mascu…\n 9 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…\n10 Bib For…    180    NA none       pale       pink              NA male  mascu…\n# ℹ 18 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\nstarwars |&gt; filter(!is.na(mass))\n\n# A tibble: 59 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…\n 9 Biggs D…    183    84 black      light      brown           24   male  mascu…\n10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n# ℹ 49 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n#  | をたくさん使う例\nstarwars |&gt; \n  filter(name == \"Luke Skywalker\" | name == \"R2-D2\" | name == \"Darth Vader\")\n\n# A tibble: 3 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n3 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# %in% を使うバージョン\ntarget_characters &lt;- c(\"Luke Skywalker\", \"R2-D2\", \"Darth Vader\")\nstarwars |&gt; filter(name %in% target_characters)\n\n# A tibble: 3 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n3 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# \"R[0-9]-D[0-9]\"の正規表現に絞り込む\nstarwars |&gt; filter(str_detect(name, \"R[0-9]-D[0-9]\"))\n\n# A tibble: 2 × 14\n  name  height  mass hair_color skin_color  eye_color birth_year sex   gender   \n  &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    \n1 R2-D2     96    32 &lt;NA&gt;       white, blue red               33 none  masculine\n2 R5-D4     97    32 &lt;NA&gt;       white, red  red               NA none  masculine\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# mass が 90 から 120 の間の時に絞り込む\nstarwars |&gt; filter(between(mass, 90, 120))\n\n# A tibble: 6 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…\n2 Chewbacca    228   112 brown      unknown    blue             200 male  mascu…\n3 Jek Tono…    180   110 brown      fair       blue              NA &lt;NA&gt;  &lt;NA&gt;  \n4 Bossk        190   113 none       green      red               53 male  mascu…\n5 Nute Gun…    191    90 none       mottled g… red               NA male  mascu…\n6 Dexter J…    198   102 none       brown      yellow            NA male  mascu…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# mass が NA の時に絞り込む\nstarwars |&gt;  filter(is.na(mass))\n\n# A tibble: 28 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Wilhuff…    180    NA auburn, g… fair       blue              64 male  mascu…\n 2 Mon Mot…    150    NA auburn     fair       blue              48 fema… femin…\n 3 Arvel C…     NA    NA brown      fair       brown             NA male  mascu…\n 4 Finis V…    170    NA blond      fair       blue              91 male  mascu…\n 5 Rugor N…    206    NA none       green      orange            NA male  mascu…\n 6 Ric Olié    183    NA brown      fair       blue              NA male  mascu…\n 7 Watto       137    NA black      blue, grey yellow            NA male  mascu…\n 8 Quarsh …    183    NA black      dark       brown             62 male  mascu…\n 9 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…\n10 Bib For…    180    NA none       pale       pink              NA male  mascu…\n# ℹ 18 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# mass が NA じゃない時に絞り込む\nstarwars |&gt;  filter(!is.na(mass))\n\n# A tibble: 59 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…\n 9 Biggs D…    183    84 black      light      brown           24   male  mascu…\n10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n# ℹ 49 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#arrange-行を並べ替える",
+    "href": "tidyverse/10-dplyr.html#arrange-行を並べ替える",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "arrange(): 行を並べ替える",
+    "text": "arrange(): 行を並べ替える\narrange() は、指定した列の値に基づいて行の順序を並べ替えるための関数です。\nデフォルトでは昇順（小さい順、アルファベット順）に並べ替えます。降順にするには desc() を使います。\n\n# 体重 (mass) が軽い順に並べ替える\nstarwars |&gt; arrange(mass)\n\n# A tibble: 87 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…\n 2 Yoda         66    17 white      green      brown            896 male  mascu…\n 3 Wicket …     88    20 brown      brown      brown              8 male  mascu…\n 4 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…\n 5 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…\n 6 Sebulba     112    40 none       grey, red  orange            NA male  mascu…\n 7 Padmé A…    185    45 brown      light      brown             46 fema… femin…\n 8 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…\n 9 Wat Tam…    193    48 none       green, gr… unknown           NA male  mascu…\n10 Sly Moo…    178    48 none       pale       white             NA &lt;NA&gt;  &lt;NA&gt;  \n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# 身長 (height) が高い順に並べ替える\nstarwars |&gt; arrange(desc(height))\n\n# A tibble: 87 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Yarael …    264    NA none       white      yellow          NA   male  mascu…\n 2 Tarfful     234   136 brown      brown      blue            NA   male  mascu…\n 3 Lama Su     229    88 none       grey       black           NA   male  mascu…\n 4 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…\n 5 Roos Ta…    224    82 none       grey       orange          NA   male  mascu…\n 6 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…\n 7 Taun We     213    NA none       grey       black           NA   fema… femin…\n 8 Rugor N…    206    NA none       green      orange          NA   male  mascu…\n 9 Tion Me…    206    80 none       grey       black           NA   male  mascu…\n10 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# 複数の列で並べ替える (種族で並べ替え、同じ種族の中では身長が高い順に並べ替える)\nstarwars |&gt; arrange(species, desc(height))\n\n# A tibble: 87 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…\n 2 Dexter …    198   102 none       brown      yellow            NA male  mascu…\n 3 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…\n 4 Mas Ame…    196    NA none       blue       blue              NA male  mascu…\n 5 Zam Wes…    168    55 blonde     fair, gre… yellow            NA fema… femin…\n 6 IG-88       200   140 none       metal      red               15 none  mascu…\n 7 C-3PO       167    75 &lt;NA&gt;       gold       yellow           112 none  mascu…\n 8 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…\n 9 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…\n10 R4-P17       96    NA none       silver, r… red, blue         NA none  femin…\n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#relocate-列の順序を変更する",
+    "href": "tidyverse/10-dplyr.html#relocate-列の順序を変更する",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "relocate(): 列の順序を変更する",
+    "text": "relocate(): 列の順序を変更する\nrelocate() は、データフレームの列の順序を自由に変更するための関数です。\n特定の列を先頭に持ってきたり、関連する列を隣同士に並べたりして、データをみやすくするのに役立ちます。\n\n# `homeworld` と `species` の列を先頭に移動する\nstarwars |&gt; relocate(homeworld, species)\n\n# A tibble: 87 × 14\n   homeworld species name           height  mass hair_color skin_color eye_color\n   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    \n 1 Tatooine  Human   Luke Skywalker    172    77 blond      fair       blue     \n 2 Tatooine  Droid   C-3PO             167    75 &lt;NA&gt;       gold       yellow   \n 3 Naboo     Droid   R2-D2              96    32 &lt;NA&gt;       white, bl… red      \n 4 Tatooine  Human   Darth Vader       202   136 none       white      yellow   \n 5 Alderaan  Human   Leia Organa       150    49 brown      light      brown    \n 6 Tatooine  Human   Owen Lars         178   120 brown, gr… light      blue     \n 7 Tatooine  Human   Beru Whitesun…    165    75 brown      light      blue     \n 8 Tatooine  Droid   R5-D4              97    32 &lt;NA&gt;       white, red red      \n 9 Tatooine  Human   Biggs Darklig…    183    84 black      light      brown    \n10 Stewjon   Human   Obi-Wan Kenobi    182    77 auburn, w… fair       blue-gray\n# ℹ 77 more rows\n# ℹ 6 more variables: birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# `birth_year` 列を `name` 列のすぐ後ろに移動する\nstarwars |&gt; relocate(birth_year, .after = name)\n\n# A tibble: 87 × 14\n   name     birth_year height  mass hair_color skin_color eye_color sex   gender\n   &lt;chr&gt;         &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…       19      172    77 blond      fair       blue      male  mascu…\n 2 C-3PO         112      167    75 &lt;NA&gt;       gold       yellow    none  mascu…\n 3 R2-D2          33       96    32 &lt;NA&gt;       white, bl… red       none  mascu…\n 4 Darth V…       41.9    202   136 none       white      yellow    male  mascu…\n 5 Leia Or…       19      150    49 brown      light      brown     fema… femin…\n 6 Owen La…       52      178   120 brown, gr… light      blue      male  mascu…\n 7 Beru Wh…       47      165    75 brown      light      blue      fema… femin…\n 8 R5-D4          NA       97    32 &lt;NA&gt;       white, red red       none  mascu…\n 9 Biggs D…       24      183    84 black      light      brown     male  mascu…\n10 Obi-Wan…       57      182    77 auburn, w… fair       blue-gray male  mascu…\n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n# `gender` 列を `homeworld` 列のすぐ前に移動する\nstarwars |&gt; relocate(gender, .before = homeworld)\n\n# A tibble: 87 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…\n 9 Biggs D…    183    84 black      light      brown           24   male  mascu…\n10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/10-dplyr.html#演習すべてを繋げてみよう",
+    "href": "tidyverse/10-dplyr.html#演習すべてを繋げてみよう",
+    "title": "フィルタ・セレクト・アレンジ",
+    "section": "演習：すべてを繋げてみよう",
+    "text": "演習：すべてを繋げてみよう\nstarwars データセットを使って、以下の条件を満たすデータを作成してください。\n\n種族が “Droid” のキャラクターだけを絞り込み (filter)、\nname, model, mass, birth_year の列だけを選び (select)、\nmass が重い順に並べ替え (arrange)、\nmodel 列を先頭に移動させて (relocate) ください。",
+    "crumbs": [
+      "tidyverse",
+      "フィルタ・セレクト・アレンジ"
+    ]
+  },
+  {
+    "objectID": "tidyverse/30-readr.html",
+    "href": "tidyverse/30-readr.html",
+    "title": "データの読み書き",
+    "section": "",
+    "text": "データ分析の最初のステップは、分析したいデータをRに読み込むことです。 readr は tidyverse の一部で、CSV ファイルのような「長方形」のテキストデータを R に高速かつ正確に読み込むためのパッケージです。\nBase R にも read.csv() という関数がありますが、readr を使うことには以下のようなメリットがあります。",
+    "crumbs": [
+      "tidyverse",
+      "データの読み書き"
+    ]
+  },
+  {
+    "objectID": "tidyverse/30-readr.html#read_csvwrite_csv-csvファイルの読み書き",
+    "href": "tidyverse/30-readr.html#read_csvwrite_csv-csvファイルの読み書き",
+    "title": "データの読み書き",
+    "section": "read_csv()・write_csv(): CSVファイルの読み書き",
+    "text": "read_csv()・write_csv(): CSVファイルの読み書き\n最もよく使われるのが read_csv() 関数です。 これは、カンマ区切り（Comma Separated Values）のファイルを読み込み、tibble という tidyverse で使われるデータ形式に変換します。\nまずは tidyverse を読み込みます。\n\nlibrary(tidyverse)\n\n基本的な使い方\n使い方は非常にシンプルで、ファイルへのパス（場所）を引数として渡すだけです。\n\n# 例として、まず R のデータフレームをCSVファイルとして書き出してみます\nsample_data &lt;- tibble(\n  id = 1:3,\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  score = c(85.5, 92.0, 78.5)\n)\n\nCSV を書き込むには、write_csv() を使います。\n\n# 書き出したい tibble と書き込みたいパスとファイル名を渡します\nwrite_csv(sample_data, \"my_sample_data.csv\")\n\nCSV のを読み込むには、read_csv() を使います。\n\n# 今書き出したCSVファイルを読み込む\ndf &lt;- read_csv(\"my_sample_data.csv\")\n\nRows: 3 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): name\ndbl (2): id, score\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# 読み込んだ結果を確認\ndf\n\n# A tibble: 3 × 3\n     id name    score\n  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;\n1     1 Alice    85.5\n2     2 Bob      92  \n3     3 Charlie  78.5\n\n\nread_csv() を実行すると、各列がどのデータ型（chr, dbl, int など）として認識されたかがコンソールに表示されます。\n\n\n\n\n\n\nNoteファイルパスの問題\n\n\n\nRスクリプトで read_csv(\"data/my_sample_data.csv\") のようにファイルパスを指定すると、そのスクリプトを誰かと共有したり、別のPCで実行したり、ファイルの場所を移動したりした際に、パスが通らなくなりエラーが頻発します。\nこれは、Rがどのフォルダを基準にファイルを探しているか（ワーキングディレクトリ）が、実行環境によって変わってしまうためです。この問題を解決するために setwd(\"C:/Users/...\") のようにワーキングディレクトリを固定する方法もありますが、これは他の人のPCでは動かないため、悪い習慣とされています。\n\nhere::here() がすべてを解決\nhere パッケージは、この問題をシンプルかつエレガントに解決します。\nメリット:\n\nsetwd() が不要になる: setwd() をスクリプトの冒頭に書く必要が一切なくなります。\nどこでも動く: あなたの PC でも、同僚のPCでも、サーバー上でも、スクリプトを移動しても、同じコードがエラーなく動きます。\n共同作業が楽になる: Git などでプロジェクトを共有する際に、ファイルパスの違いを気にする必要がありません。\n直感的: プロジェクトのルート（一番上の階層）を基準にパスを組み立てるため、非常に分かりやすいです。\n\nhereの仕組み: here は、現在のスクリプトの場所から上の階層に向かって .Rproj ファイルや .git フォルダを探します。それらが見つかった場所を「プロジェクトのルート」と判断し、そこを基準点としてファイルへの絶対パスを安全に構築してくれるのです。\n\n\n\n\nhere::here() の使い方\nhere() を使うための最も重要な前提は、作業を RStudioプロジェクト (.Rproj ファイル) で管理することです。\nまだインストールしていない場合は、一度だけコンソールで実行します。\n\ninstall.packages(\"here\")\n\nでは、ファイルパスを組み立てましょう。\nhere(\"フォルダ名\", \"ファイル名\") のように、プロジェクトのルートからの道のりをカンマで区切って指定します。\n\nfilename &lt;- here::here(\"data\", \"my_sample_data.csv\")\nwrite_csv(sample_data, filename)\ndf &lt;- read_csv(filename)\n\nRows: 3 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): name\ndbl (2): id, score\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndf\n\n# A tibble: 3 × 3\n     id name    score\n  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;\n1     1 Alice    85.5\n2     2 Bob      92  \n3     3 Charlie  78.5\n\n\n\n:: は、特定のパッケージに属する関数を直接指定して呼び出すための演算子です。 here::here()は、「here という名前のパッケージの中にある here という名前の関数」という意味になります。\nなぜ :: を使うのか？\n:: を使うことには、主に2つの大きなメリットがあります。\n\n関数の名前の衝突（競合）を避ける\n\nRでは、異なるパッケージが同じ名前の関数を持っていることがあります。 例えば、dplyr パッケージとRの基本機能（stats パッケージ）は、どちらも filter() という名前の関数を持っています。\nもし library(dplyr)を実行せずに filter() を使うと、意図せず基本機能の filter() が動いてしまうかもしれません。dplyr::filter() と書けば、「dplyr の filter() を使います」と明示的に宣言できるため、このような混乱やエラーを防げます。\n\nコードの可読性が上がる\n\nhere::here() と書かれているコードを見れば、誰でも「ああ、これは here パッケージの機能を使っているんだな」と一目で分かります。library() で一度にたくさんのパッケージを読み込むと、どの関数がどのパッケージ由来なのか分かりにくくなることがあります。",
+    "crumbs": [
+      "tidyverse",
+      "データの読み書き"
+    ]
+  },
+  {
+    "objectID": "tidyverse/30-readr.html#herehere-がすべてを解決",
+    "href": "tidyverse/30-readr.html#herehere-がすべてを解決",
+    "title": "データの読み書き",
+    "section": "here::here() がすべてを解決",
+    "text": "here::here() がすべてを解決\nhere パッケージは、この問題をシンプルかつエレガントに解決します。\nメリット:\n\nsetwd() が不要になる: setwd() をスクリプトの冒頭に書く必要が一切なくなります。\nどこでも動く: あなたの PC でも、同僚のPCでも、サーバー上でも、スクリプトを移動しても、同じコードがエラーなく動きます。\n共同作業が楽になる: Git などでプロジェクトを共有する際に、ファイルパスの違いを気にする必要がありません。\n直感的: プロジェクトのルート（一番上の階層）を基準にパスを組み立てるため、非常に分かりやすいです。\n\nhereの仕組み: here は、現在のスクリプトの場所から上の階層に向かって .Rproj ファイルや .git フォルダを探します。それらが見つかった場所を「プロジェクトのルート」と判断し、そこを基準点としてファイルへの絶対パスを安全に構築してくれるのです。",
+    "crumbs": [
+      "tidyverse",
+      "データの読み書き"
+    ]
+  },
+  {
+    "objectID": "tidyverse/30-readr.html#read_tsv-tsvファイルを読み込む",
+    "href": "tidyverse/30-readr.html#read_tsv-tsvファイルを読み込む",
+    "title": "データの読み書き",
+    "section": "read_tsv(): TSVファイルを読み込む",
+    "text": "read_tsv(): TSVファイルを読み込む\nread_tsv() は、タブ区切り（Tab Separated Values）のファイルを読み込むための関数です。 基本的な使い方は read_csv() と全く同じです。\n\nfilename = here::here(\"data\", \"my_sample_data.tsv\")\n# タブ区切りのファイルを作成\nwrite_tsv(sample_data, filename)\n\n# TSVファイルを読み込む\ndf_tsv &lt;- read_tsv(filename)\n\nRows: 3 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \"\\t\"\nchr (1): name\ndbl (2): id, score\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndf_tsv\n\n# A tibble: 3 × 3\n     id name    score\n  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;\n1     1 Alice    85.5\n2     2 Bob      92  \n3     3 Charlie  78.5",
+    "crumbs": [
+      "tidyverse",
+      "データの読み書き"
+    ]
+  },
+  {
+    "objectID": "tidyverse/30-readr.html#read_delim-一般的な区切り文字ファイル",
+    "href": "tidyverse/30-readr.html#read_delim-一般的な区切り文字ファイル",
+    "title": "データの読み書き",
+    "section": "read_delim(): 一般的な区切り文字ファイル",
+    "text": "read_delim(): 一般的な区切り文字ファイル\nもしあなたのデータがカンマやタブではなく、セミコロン(;)やパイプ(|)のような特殊な文字で区切られている場合は、read_delim() を使います。 delim 引数で区切り文字を指定します。\n\nfilename = here::here(\"data\", \"my_sample_data.txt\")\n\n# セミコロン区切りのファイルを作成\nwrite_delim(sample_data, filename, delim = \";\")\n\n# セミコロン区切りのファイルを読み込む\ndf_delim &lt;- read_delim(filename, delim = \";\")\n\nRows: 3 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \";\"\nchr (1): name\ndbl (2): id, score\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndf_delim\n\n# A tibble: 3 × 3\n     id name    score\n  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;\n1     1 Alice    85.5\n2     2 Bob      92  \n3     3 Charlie  78.5\n\n\n列の型を自分で指定する\nreadr は賢く列の型を推測してくれますが、時々間違えることもあります（例：数値のはずが文字列として読み込まれる）。 その場合は col_types 引数を使って、正しい型を手動で指定できます。\ncols() 関数の中に、列ごとに型を指定します。\n\ncol_character(): 文字列型\ncol_integer(): 整数型\ncol_double(): 小数を含む数値型\ncol_logical(): 論理値型 (TRUE/FALSE)\n\n例: id を文字列として、score を整数として読み込んでみる\n\nfilename = here::here(\"data\", \"my_sample_data.csv\")\n\ndf_manual &lt;- read_csv(\n  filename,\n  col_types = cols(\n    id = col_character(),\n    score = col_integer()\n  )\n)\n\nWarning: One or more parsing issues, call `problems()` on your data frame for details,\ne.g.:\n  dat &lt;- vroom(...)\n  problems(dat)\n\ndf_manual\n\n# A tibble: 3 × 3\n  id    name    score\n  &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;\n1 1     Alice      NA\n2 2     Bob        92\n3 3     Charlie    NA",
+    "crumbs": [
+      "tidyverse",
+      "データの読み書き"
     ]
   }
 ]

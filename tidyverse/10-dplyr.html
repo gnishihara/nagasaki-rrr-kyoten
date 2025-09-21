@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>フィルタ・セレクト・アレンジ – 水産海洋データ解析演習I・II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-81907348be4d4a5d12dba001a5b3f1df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/10-dplyr.html">フィルタ・セレクト・アレンジ</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">サイトについて</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基礎</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../kiso/01-assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">代入演算子</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">基本的な操作</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../kiso/03-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">オブジェクトへの代入</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../kiso/04-vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ベクトル・行列などの作り方</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../kiso/05-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R関数の使い方と作り方</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">tidyverse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tidyverse/01-about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">tidyverseについて</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tidyverse/10-dplyr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">フィルタ・セレクト・アレンジ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tidyverse/20-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ミューテート・グループバイ・サマライズ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tidyverse/30-readr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">データの読み書き</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">作図 (ggplot2)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ggplot2/01-about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">作図について</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dplyr-基本操作データの選択並べ替え整形" id="toc-dplyr-基本操作データの選択並べ替え整形" class="nav-link active" data-scroll-target="#dplyr-基本操作データの選択並べ替え整形"><code>dplyr</code> 基本操作：データの選択、並べ替え、整形</a></li>
+  <li><a href="#select-列を選ぶ" id="toc-select-列を選ぶ" class="nav-link" data-scroll-target="#select-列を選ぶ"><code>select()</code>: 列を選ぶ</a>
+  <ul class="collapse">
+  <li><a href="#select-で使える便利なヘルパー関数" id="toc-select-で使える便利なヘルパー関数" class="nav-link" data-scroll-target="#select-で使える便利なヘルパー関数"><code>select()</code> で使える便利なヘルパー関数</a></li>
+  </ul></li>
+  <li><a href="#filter-行を絞り込む" id="toc-filter-行を絞り込む" class="nav-link" data-scroll-target="#filter-行を絞り込む"><code>filter()</code>: 行を絞り込む</a></li>
+  <li><a href="#filter-のヘルパー関数" id="toc-filter-のヘルパー関数" class="nav-link" data-scroll-target="#filter-のヘルパー関数"><code>filter()</code> のヘルパー関数</a></li>
+  <li><a href="#arrange-行を並べ替える" id="toc-arrange-行を並べ替える" class="nav-link" data-scroll-target="#arrange-行を並べ替える"><code>arrange()</code>: 行を並べ替える</a></li>
+  <li><a href="#relocate-列の順序を変更する" id="toc-relocate-列の順序を変更する" class="nav-link" data-scroll-target="#relocate-列の順序を変更する"><code>relocate()</code>: 列の順序を変更する</a></li>
+  <li><a href="#演習すべてを繋げてみよう" id="toc-演習すべてを繋げてみよう" class="nav-link" data-scroll-target="#演習すべてを繋げてみよう">演習：すべてを繋げてみよう</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/10-dplyr.html">フィルタ・セレクト・アレンジ</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">フィルタ・セレクト・アレンジ</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="dplyr-基本操作データの選択並べ替え整形" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr-基本操作データの選択並べ替え整形"><code>dplyr</code> 基本操作：データの選択、並べ替え、整形</h2>
+<p>では、<code>dplyr</code> パッケージの中心的な機能である「データのサブセット化」と「順序の整理」を紹介します。 <code>tidyverse</code> を読み込んで、R に組み込まれている <code>starwars</code> データセットを使いながら、以下の4つの基本的な「動詞」をマスターしましょう。</p>
+<ul>
+<li>select(): 列を選ぶ</li>
+<li>filter(): 行を絞り込む</li>
+<li>arrange(): 行を並べ替える</li>
+<li>relocate(): 列の順序を変更する</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="select-列を選ぶ" class="level2">
+<h2 class="anchored" data-anchor-id="select-列を選ぶ"><code>select()</code>: 列を選ぶ</h2>
+<p><code>select()</code> は、ティブル (tibble) から必要な列だけを選び出すための関数です。</p>
+<p>分析に必要な列だけを残したり、特定の列を除外したりする場合に使います。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># starwarsデータから、名前、身長、体重の列だけを選ぶ</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(name, height, mass)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 3
+   name               height  mass
+   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;
+ 1 Luke Skywalker        172    77
+ 2 C-3PO                 167    75
+ 3 R2-D2                  96    32
+ 4 Darth Vader           202   136
+ 5 Leia Organa           150    49
+ 6 Owen Lars             178   120
+ 7 Beru Whitesun Lars    165    75
+ 8 R5-D4                  97    32
+ 9 Biggs Darklighter     183    84
+10 Obi-Wan Kenobi        182    77
+# ℹ 77 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># name列からmass列まで、連続した列を選ぶ</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(name<span class="sc">:</span>mass)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 3
+   name               height  mass
+   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;
+ 1 Luke Skywalker        172    77
+ 2 C-3PO                 167    75
+ 3 R2-D2                  96    32
+ 4 Darth Vader           202   136
+ 5 Leia Organa           150    49
+ 6 Owen Lars             178   120
+ 7 Beru Whitesun Lars    165    75
+ 8 R5-D4                  97    32
+ 9 Biggs Darklighter     183    84
+10 Obi-Wan Kenobi        182    77
+# ℹ 77 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hair_color列を「除外」する</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>hair_color)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 13
+   name      height  mass skin_color eye_color birth_year sex   gender homeworld
+   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    
+ 1 Luke Sky…    172    77 fair       blue            19   male  mascu… Tatooine 
+ 2 C-3PO        167    75 gold       yellow         112   none  mascu… Tatooine 
+ 3 R2-D2         96    32 white, bl… red             33   none  mascu… Naboo    
+ 4 Darth Va…    202   136 white      yellow          41.9 male  mascu… Tatooine 
+ 5 Leia Org…    150    49 light      brown           19   fema… femin… Alderaan 
+ 6 Owen Lars    178   120 light      blue            52   male  mascu… Tatooine 
+ 7 Beru Whi…    165    75 light      blue            47   fema… femin… Tatooine 
+ 8 R5-D4         97    32 white, red red             NA   none  mascu… Tatooine 
+ 9 Biggs Da…    183    84 light      brown           24   male  mascu… Tatooine 
+10 Obi-Wan …    182    77 fair       blue-gray       57   male  mascu… Stewjon  
+# ℹ 77 more rows
+# ℹ 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+#   starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "color"で終わる名前の列をすべて選ぶ</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"color"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 3
+   hair_color    skin_color  eye_color
+   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+ 1 blond         fair        blue     
+ 2 &lt;NA&gt;          gold        yellow   
+ 3 &lt;NA&gt;          white, blue red      
+ 4 none          white       yellow   
+ 5 brown         light       brown    
+ 6 brown, grey   light       blue     
+ 7 brown         light       blue     
+ 8 &lt;NA&gt;          white, red  red      
+ 9 black         light       brown    
+10 auburn, white fair        blue-gray
+# ℹ 77 more rows</code></pre>
+</div>
+</div>
+<section id="select-で使える便利なヘルパー関数" class="level3">
+<h3 class="anchored" data-anchor-id="select-で使える便利なヘルパー関数"><code>select()</code> で使える便利なヘルパー関数</h3>
+<p><code>select()</code> で一つずつ列の名前を指定するのは、列が多い場合に大変です。 <code>dplyr</code> には、特定のパターンに一致する列名を効率よく選ぶためのヘルパー関数が用意されており、これらを <code>select()</code> や {relocate()} の中で使うことができます。</p>
+<ul>
+<li><code>everything()</code>: まだ選択されていない残りのすべての列を選びます。</li>
+<li><code>starts_with()</code>: 指定した文字で始まる名前の列をすべて選びます。</li>
+<li><code>ends_with()</code>: 指定した文字で終わる名前の列をすべて選びます。</li>
+<li><code>contains()</code>: 名前に指定した文字が含まれる列をすべて選びます（位置は問いません）。</li>
+<li><code>matches()</code>: 正規表現 (Regular Expression) という、文字列の高度なパターンマッチング言語を使って列名を選びます。<code>contains()</code> などが単純な単語を探すのに対し、<code>matches()</code> は「<code>A</code> または <code>B</code> を含む」や「<code>s</code> で始まり <code>t</code> で終わる」といった、より複雑なルールを指定できます。</li>
+<li><code>where()</code>: 列のデータ型（数値、文字列など）に基づいて列を選ぶ、少し高度ですが強力なヘルパーです。
+<ul>
+<li>where(is.numeric): 数値型の列をすべて選びます。</li>
+<li>where(is.character): 文字列型の列をすべて選びます。</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 文字列型の列をすべて選ぶ</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">where</span>(is.character))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 8
+   name           hair_color skin_color eye_color sex   gender homeworld species
+   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  
+ 1 Luke Skywalker blond      fair       blue      male  mascu… Tatooine  Human  
+ 2 C-3PO          &lt;NA&gt;       gold       yellow    none  mascu… Tatooine  Droid  
+ 3 R2-D2          &lt;NA&gt;       white, bl… red       none  mascu… Naboo     Droid  
+ 4 Darth Vader    none       white      yellow    male  mascu… Tatooine  Human  
+ 5 Leia Organa    brown      light      brown     fema… femin… Alderaan  Human  
+ 6 Owen Lars      brown, gr… light      blue      male  mascu… Tatooine  Human  
+ 7 Beru Whitesun… brown      light      blue      fema… femin… Tatooine  Human  
+ 8 R5-D4          &lt;NA&gt;       white, red red       none  mascu… Tatooine  Droid  
+ 9 Biggs Darklig… black      light      brown     male  mascu… Tatooine  Human  
+10 Obi-Wan Kenobi auburn, w… fair       blue-gray male  mascu… Stewjon   Human  
+# ℹ 77 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="filter-行を絞り込む" class="level2">
+<h2 class="anchored" data-anchor-id="filter-行を絞り込む"><code>filter()</code>: 行を絞り込む</h2>
+<p><code>filter()</code> は、指定した条件に一致する行だけを絞り込むための関数です。</p>
+<p>データの特定のサブセット（例：特定の種族のキャラクター、特定の条件を満たす観測など）を抽出する際に使います。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 種族 (species) が "Human" のキャラクターだけを絞り込む</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Human"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 3 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 4 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 5 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 6 Biggs D…    183    84 black      light      brown           24   male  mascu…
+ 7 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+ 8 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…
+ 9 Wilhuff…    180    NA auburn, g… fair       blue            64   male  mascu…
+10 Han Solo    180    80 brown      fair       brown           29   male  mascu…
+# ℹ 25 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 身長 (height) が180cmより大きいキャラクターを絞り込む</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">180</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 39 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Darth V…    202 136   none       white      yellow          41.9 male  mascu…
+ 2 Biggs D…    183  84   black      light      brown           24   male  mascu…
+ 3 Obi-Wan…    182  77   auburn, w… fair       blue-gray       57   male  mascu…
+ 4 Anakin …    188  84   blond      fair       blue            41.9 male  mascu…
+ 5 Chewbac…    228 112   brown      unknown    blue           200   male  mascu…
+ 6 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+ 7 IG-88       200 140   none       metal      red             15   none  mascu…
+ 8 Bossk       190 113   none       green      red             53   male  mascu…
+ 9 Qui-Gon…    193  89   brown      fair       blue            92   male  mascu…
+10 Nute Gu…    191  90   none       mottled g… red             NA   male  mascu…
+# ℹ 29 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 複数の条件を組み合わせる (種族がHuman「かつ」出身惑星がTatooine)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># カンマ(,)は「かつ」(AND) を意味します</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Human"</span>, homeworld <span class="sc">==</span> <span class="st">"Tatooine"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 14
+  name      height  mass hair_color skin_color eye_color birth_year sex   gender
+  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…
+2 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+3 Owen Lars    178   120 brown, gr… light      blue            52   male  mascu…
+4 Beru Whi…    165    75 brown      light      blue            47   fema… femin…
+5 Biggs Da…    183    84 black      light      brown           24   male  mascu…
+6 Anakin S…    188    84 blond      fair       blue            41.9 male  mascu…
+7 Shmi Sky…    163    NA black      fair       brown           72   fema… femin…
+8 Cliegg L…    183    NA brown      fair       blue            82   male  mascu…
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 複数の条件のいずれかを満たす (髪の色が "blond" 「または」 "brown")</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># | は「または」(OR) を意味します</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"blond"</span> <span class="sc">|</span> hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 3 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 4 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…
+ 5 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+ 6 Han Solo    180    80 brown      fair       brown           29   male  mascu…
+ 7 Wedge A…    170    77 brown      fair       hazel           21   male  mascu…
+ 8 Jek Ton…    180   110 brown      fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
+ 9 Arvel C…     NA    NA brown      fair       brown           NA   male  mascu…
+10 Wicket …     88    20 brown      brown      brown            8   male  mascu…
+# ℹ 11 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="filter-のヘルパー関数" class="level2">
+<h2 class="anchored" data-anchor-id="filter-のヘルパー関数"><code>filter()</code> のヘルパー関数</h2>
+<ul>
+<li><code>is.na()</code>: データ分析では欠損値 <code>NA</code> (Not Available) の扱いは非常に重要です。<code>is.na()</code> を使うと、特定の列が <code>NA</code> である行、あるいは <code>NA</code> ではない行を簡単に絞り込めます。</li>
+<li><code>str_detect()</code>: <code>stringr</code> パッケージ (<code>tidyverse</code> に含まれる) の関数で、文字列の中に 特定のパターンが含まれているか を判定します。完全一致 (==) よりも柔軟な検索が可能です。</li>
+<li><code>between()</code>: 数値がある範囲の 間にあるか を判定します。列名 &gt;= 最小値 &amp; 列名 &lt;= 最大値 と書くよりも直感的で分かりやすいです。</li>
+<li><code>%in%</code>: <code>|</code> (または) を何度も書く代わりに、指定した複数の値の いずれかに含まれるか を判定します。コードが非常にすっきりと読みやすくなります。</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Wilhuff…    180    NA auburn, g… fair       blue              64 male  mascu…
+ 2 Mon Mot…    150    NA auburn     fair       blue              48 fema… femin…
+ 3 Arvel C…     NA    NA brown      fair       brown             NA male  mascu…
+ 4 Finis V…    170    NA blond      fair       blue              91 male  mascu…
+ 5 Rugor N…    206    NA none       green      orange            NA male  mascu…
+ 6 Ric Olié    183    NA brown      fair       blue              NA male  mascu…
+ 7 Watto       137    NA black      blue, grey yellow            NA male  mascu…
+ 8 Quarsh …    183    NA black      dark       brown             62 male  mascu…
+ 9 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
+10 Bib For…    180    NA none       pale       pink              NA male  mascu…
+# ℹ 18 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 59 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+ 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+ 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+ 9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+# ℹ 49 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  | をたくさん使う例</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Luke Skywalker"</span> <span class="sc">|</span> name <span class="sc">==</span> <span class="st">"R2-D2"</span> <span class="sc">|</span> name <span class="sc">==</span> <span class="st">"Darth Vader"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 14
+  name      height  mass hair_color skin_color eye_color birth_year sex   gender
+  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…
+2 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+3 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% を使うバージョン</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>target_characters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Luke Skywalker"</span>, <span class="st">"R2-D2"</span>, <span class="st">"Darth Vader"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(name <span class="sc">%in%</span> target_characters)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 14
+  name      height  mass hair_color skin_color eye_color birth_year sex   gender
+  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…
+2 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+3 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "R[0-9]-D[0-9]"の正規表現に絞り込む</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(name, <span class="st">"R[0-9]-D[0-9]"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 14
+  name  height  mass hair_color skin_color  eye_color birth_year sex   gender   
+  &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+1 R2-D2     96    32 &lt;NA&gt;       white, blue red               33 none  masculine
+2 R5-D4     97    32 &lt;NA&gt;       white, red  red               NA none  masculine
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mass が 90 から 120 の間の時に絞り込む</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">between</span>(mass, <span class="dv">90</span>, <span class="dv">120</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+  name      height  mass hair_color skin_color eye_color birth_year sex   gender
+  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…
+2 Chewbacca    228   112 brown      unknown    blue             200 male  mascu…
+3 Jek Tono…    180   110 brown      fair       blue              NA &lt;NA&gt;  &lt;NA&gt;  
+4 Bossk        190   113 none       green      red               53 male  mascu…
+5 Nute Gun…    191    90 none       mottled g… red               NA male  mascu…
+6 Dexter J…    198   102 none       brown      yellow            NA male  mascu…
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mass が NA の時に絞り込む</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span>  <span class="fu">filter</span>(<span class="fu">is.na</span>(mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Wilhuff…    180    NA auburn, g… fair       blue              64 male  mascu…
+ 2 Mon Mot…    150    NA auburn     fair       blue              48 fema… femin…
+ 3 Arvel C…     NA    NA brown      fair       brown             NA male  mascu…
+ 4 Finis V…    170    NA blond      fair       blue              91 male  mascu…
+ 5 Rugor N…    206    NA none       green      orange            NA male  mascu…
+ 6 Ric Olié    183    NA brown      fair       blue              NA male  mascu…
+ 7 Watto       137    NA black      blue, grey yellow            NA male  mascu…
+ 8 Quarsh …    183    NA black      dark       brown             62 male  mascu…
+ 9 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
+10 Bib For…    180    NA none       pale       pink              NA male  mascu…
+# ℹ 18 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mass が NA じゃない時に絞り込む</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 59 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+ 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+ 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+ 9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+# ℹ 49 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="arrange-行を並べ替える" class="level2">
+<h2 class="anchored" data-anchor-id="arrange-行を並べ替える"><code>arrange()</code>: 行を並べ替える</h2>
+<p><code>arrange()</code> は、指定した列の値に基づいて行の順序を並べ替えるための関数です。</p>
+<p>デフォルトでは昇順（小さい順、アルファベット順）に並べ替えます。降順にするには <code>desc()</code> を使います。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 体重 (mass) が軽い順に並べ替える</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">arrange</span>(mass)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+ 2 Yoda         66    17 white      green      brown            896 male  mascu…
+ 3 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+ 4 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+ 5 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+ 6 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+ 7 Padmé A…    185    45 brown      light      brown             46 fema… femin…
+ 8 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+ 9 Wat Tam…    193    48 none       green, gr… unknown           NA male  mascu…
+10 Sly Moo…    178    48 none       pale       white             NA &lt;NA&gt;  &lt;NA&gt;  
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 身長 (height) が高い順に並べ替える</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(height))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Yarael …    264    NA none       white      yellow          NA   male  mascu…
+ 2 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+ 3 Lama Su     229    88 none       grey       black           NA   male  mascu…
+ 4 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+ 5 Roos Ta…    224    82 none       grey       orange          NA   male  mascu…
+ 6 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+ 7 Taun We     213    NA none       grey       black           NA   fema… femin…
+ 8 Rugor N…    206    NA none       green      orange          NA   male  mascu…
+ 9 Tion Me…    206    80 none       grey       black           NA   male  mascu…
+10 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 複数の列で並べ替える (種族で並べ替え、同じ種族の中では身長が高い順に並べ替える)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">arrange</span>(species, <span class="fu">desc</span>(height))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+ 2 Dexter …    198   102 none       brown      yellow            NA male  mascu…
+ 3 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…
+ 4 Mas Ame…    196    NA none       blue       blue              NA male  mascu…
+ 5 Zam Wes…    168    55 blonde     fair, gre… yellow            NA fema… femin…
+ 6 IG-88       200   140 none       metal      red               15 none  mascu…
+ 7 C-3PO       167    75 &lt;NA&gt;       gold       yellow           112 none  mascu…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+ 9 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+10 R4-P17       96    NA none       silver, r… red, blue         NA none  femin…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="relocate-列の順序を変更する" class="level2">
+<h2 class="anchored" data-anchor-id="relocate-列の順序を変更する"><code>relocate()</code>: 列の順序を変更する</h2>
+<p><code>relocate()</code> は、データフレームの列の順序を自由に変更するための関数です。</p>
+<p>特定の列を先頭に持ってきたり、関連する列を隣同士に並べたりして、データをみやすくするのに役立ちます。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `homeworld` と `species` の列を先頭に移動する</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">relocate</span>(homeworld, species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   homeworld species name           height  mass hair_color skin_color eye_color
+   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    
+ 1 Tatooine  Human   Luke Skywalker    172    77 blond      fair       blue     
+ 2 Tatooine  Droid   C-3PO             167    75 &lt;NA&gt;       gold       yellow   
+ 3 Naboo     Droid   R2-D2              96    32 &lt;NA&gt;       white, bl… red      
+ 4 Tatooine  Human   Darth Vader       202   136 none       white      yellow   
+ 5 Alderaan  Human   Leia Organa       150    49 brown      light      brown    
+ 6 Tatooine  Human   Owen Lars         178   120 brown, gr… light      blue     
+ 7 Tatooine  Human   Beru Whitesun…    165    75 brown      light      blue     
+ 8 Tatooine  Droid   R5-D4              97    32 &lt;NA&gt;       white, red red      
+ 9 Tatooine  Human   Biggs Darklig…    183    84 black      light      brown    
+10 Stewjon   Human   Obi-Wan Kenobi    182    77 auburn, w… fair       blue-gray
+# ℹ 77 more rows
+# ℹ 6 more variables: birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `birth_year` 列を `name` 列のすぐ後ろに移動する</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">relocate</span>(birth_year, <span class="at">.after =</span> name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     birth_year height  mass hair_color skin_color eye_color sex   gender
+   &lt;chr&gt;         &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…       19      172    77 blond      fair       blue      male  mascu…
+ 2 C-3PO         112      167    75 &lt;NA&gt;       gold       yellow    none  mascu…
+ 3 R2-D2          33       96    32 &lt;NA&gt;       white, bl… red       none  mascu…
+ 4 Darth V…       41.9    202   136 none       white      yellow    male  mascu…
+ 5 Leia Or…       19      150    49 brown      light      brown     fema… femin…
+ 6 Owen La…       52      178   120 brown, gr… light      blue      male  mascu…
+ 7 Beru Wh…       47      165    75 brown      light      blue      fema… femin…
+ 8 R5-D4          NA       97    32 &lt;NA&gt;       white, red red       none  mascu…
+ 9 Biggs D…       24      183    84 black      light      brown     male  mascu…
+10 Obi-Wan…       57      182    77 auburn, w… fair       blue-gray male  mascu…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `gender` 列を `homeworld` 列のすぐ前に移動する</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">relocate</span>(gender, <span class="at">.before =</span> homeworld)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+ 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+ 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+ 9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="演習すべてを繋げてみよう" class="level2">
+<h2 class="anchored" data-anchor-id="演習すべてを繋げてみよう">演習：すべてを繋げてみよう</h2>
+<p><code>starwars</code> データセットを使って、以下の条件を満たすデータを作成してください。</p>
+<ol type="1">
+<li>種族が “Droid” のキャラクターだけを絞り込み (<code>filter</code>)、</li>
+<li><code>name</code>, <code>model</code>, <code>mass</code>, <code>birth_year</code> の列だけを選び (<code>select</code>)、</li>
+<li><code>mass</code> が重い順に並べ替え (<code>arrange</code>)、</li>
+<li><code>model</code> 列を先頭に移動させて (<code>relocate</code>) ください。</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gnishihara\.github\.io\/nagasaki-rrr-kyoten\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://gnishihara.github.io/nagasaki-rrr-kyoten/ggplot2/01-about.html</loc>
+    <lastmod>2025-09-21T08:19:09.897Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gnishihara.github.io/nagasaki-rrr-kyoten/tidyverse/20-dplyr.html</loc>
+    <lastmod>2025-09-21T07:28:06.700Z</lastmod>
+  </url>
+  <url>
     <loc>https://gnishihara.github.io/nagasaki-rrr-kyoten/tidyverse/01-about.html</loc>
     <lastmod>2025-09-21T05:14:00.610Z</lastmod>
   </url>
@@ -31,5 +39,13 @@
   <url>
     <loc>https://gnishihara.github.io/nagasaki-rrr-kyoten/kiso/05-functions.html</loc>
     <lastmod>2025-09-21T05:14:00.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gnishihara.github.io/nagasaki-rrr-kyoten/tidyverse/10-dplyr.html</loc>
+    <lastmod>2025-09-21T06:54:54.385Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gnishihara.github.io/nagasaki-rrr-kyoten/tidyverse/30-readr.html</loc>
+    <lastmod>2025-09-21T08:31:28.077Z</lastmod>
   </url>
 </urlset>
