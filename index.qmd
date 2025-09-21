@@ -1,0 +1,246 @@
+---
+title: "水産海洋データ解析演習の R コードについて"
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse, verbose = FALSE, quietly = TRUE)
+z = sessionInfo() |> pluck(1)
+# w = RStudio.Version()
+
+```
+
+このサイトは [水産海洋データ解析演習](http://www-mri.fish.nagasaki-u.ac.jp/ja/kyoten/) のために準備しました。
+
+サイトの更新日は `r format(Sys.time(), "%x %T %Z")` です。
+
+- コードは考えずにコピペしないでください。
+- コードに使用したデータは研究室のサーバにあるので公開していません。
+
+
+[`r fontawesome::fa("r-project", height = "1.5em")`](https://cran.r-project.org/) はここ <https://cran.r-project.org/> からダウンロードできます。
+Windows ユーザは [Rtools](https://cran.r-project.org/bin/windows/Rtools/) もインストールすることをお勧めします。
+
+[RStudio](https://posit.co/download/rstudio-desktop/) もインストールしましょう。
+R のデフォルトの IDE はとても使いにくいです。
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: 90%
+library(tidyverse)
+library(patchwork)
+link1 = "https://cran.r-project.org/"
+link2 = "https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html"
+link3 = "https://posit.co/download/rstudio-desktop/"
+fix_name = \(x) sprintf("V%04d", 1:length(x))
+z1 = qrcode::qr_code(link1, "H") |> as_tibble(.name_repair = fix_name) |> 
+  mutate(y = 1:n()) |> 
+  pivot_longer(-y) |> 
+  mutate(x = str_extract(name, "[0-9]+")) |> 
+  mutate(x = as.numeric(x)) |> 
+  mutate(value = factor(as.numeric(value)))
+z2 = qrcode::qr_code(link2, "H") |> as_tibble(.name_repair = fix_name) |> 
+  mutate(y = 1:n()) |> 
+  pivot_longer(-y) |> 
+  mutate(x = str_extract(name, "[0-9]+")) |> 
+  mutate(x = as.numeric(x)) |> 
+  mutate(value = factor(as.numeric(value)))
+z3 = qrcode::qr_code(link3, "H") |> as_tibble(.name_repair = fix_name) |> 
+  mutate(y = 1:n()) |> 
+  pivot_longer(-y) |> 
+  mutate(x = str_extract(name, "[0-9]+")) |> 
+  mutate(x = as.numeric(x)) |> 
+  mutate(value = factor(as.numeric(value)))
+q1 = ggplot(z1) + 
+  geom_tile(aes(x = x, y = rev(y), fill = value), show.legend = F) +
+  annotate("text", x = median(z1$x), y = 0, label = "R のリンク", 
+           family = "notosans", fontface = "bold", color = "grey30") +
+  scale_fill_grey(start = 1, end = 0) +
+  coord_equal() +
+  ggpubr::clean_theme() + 
+  theme(plot.background = element_blank(),
+        panel.background = element_blank())
+q2 = ggplot(z2) + 
+  geom_tile(aes(x = x, y = rev(y), fill = value), show.legend = F) +
+  annotate("text", x = median(z2$x), y = 0, label = "Rtools のリンク", 
+           family = "notosans", fontface = "bold", color = "grey30") +
+  scale_fill_grey(start = 1, end = 0) +
+  coord_equal() +
+  ggpubr::clean_theme() + 
+  theme(plot.background = element_blank(),
+        panel.background = element_blank())
+q3 = ggplot(z3) + 
+  geom_tile(aes(x = x, y = rev(y), fill = value), show.legend = F) +
+  annotate("text", x = median(z3$x), y = 0, label = "RStudio のリンク", 
+           family = "notosans", fontface = "bold", color = "grey30") +
+  scale_fill_grey(start = 1, end = 0) +
+  coord_equal() +
+  ggpubr::clean_theme() + 
+  theme(plot.background = element_blank(),
+        panel.background = element_blank())
+
+q1 + q2 + q3
+```
+
+**Session Information**
+
+* Platform: `r z$platform`
+* R version: `r z$nickname` (`r z$version.string`)
+
+## Quick Reference
+
+**ヘルプ**
+
+```{r}
+#| eval: false
+?mean                          # mean() 関数のヘルプをみる
+help.search("mean")            # 文字列で検索
+help(package = "tidyverse")    # パッケージのヘルプをみる
+```
+
+**ライブラリー (library)**
+
+```{r}
+#| eval: false
+install.packages("tidyverse")   # CRANサーバからパッケージをインストールする
+```
+
+一回インストールすればいいので、`install.packages()` は毎回する必要はない。
+
+```{r}
+#| eval: false
+library(tidyverse)              # パッケージをライブラリーから読み込む
+nlstools::preview()             # パッケージ内の関数を直接使う
+```
+
+
+**プログラミング文の基礎**
+
+**for loop**
+
+```
+for (変数名 in シークエンス) {
+  繰り返し実行するコード
+}
+```
+
+```{r}
+#| eval: false
+for(i in 1:10) {
+  j = j + i
+  print(j)
+}
+```
+
+**while loop**
+
+```
+while(条件) {
+  繰り返し実行するコード
+}
+```
+
+```{r}
+#| eval: false
+i = 0
+while(i <= 10) {
+  i = i + 1
+  print(i)
+}
+```
+
+**if else**
+
+```
+if(条件) {
+  コード
+} else {
+　条件を満たさないときのコード
+}
+```
+
+
+```{r}
+#| eval: false
+x1 = sample(1:6, 1) 
+x2 = sample(1:6, 1)
+if(near(x1 + x2, 7)) {
+  print(paste(x1, x2))
+} else {
+  print(x1 + x2)}
+
+```
+
+**条件判定**
+
+* `x == y` : x と y は等しい
+* `x != y` : x と y は等しくない
+* `x > y` : x が y より大きい
+* `x < y` : x が y より小さい
+* `x >= y` : x が y 以上
+* `x <= y` : x が y 以下
+* `is.na(x)` : x が欠損値である
+* `is.null(x)` : x が null 値である
+* `any(x %in% y)` : x が y に含まれる
+
+**function**
+
+```
+関数名 = function(変数1, 変数2, ...) {
+  コード
+}
+```
+
+```{r}
+#| eval: false
+se = function(x, na.rm = FALSE) {
+  s = sd(x, na.rm = na.rm)
+  n = length(na.omit(x))
+  s / sqrt(n - 1)
+}
+```
+
+**ファイルの入出力**
+
+研究室では、ファイルの入出力に `tidyverse`　パッケージの関数を使っています。
+
+```{r}
+#| eval: false
+library(tidyerse)
+```
+
+```{r}
+#| eval: false
+# ファイルの読み込み
+dset = read_table("filename.txt") # タブ・コンマ区切りのテキストファイル
+dset = read_csv("filename.csv")   # コンマ区切りの csv ファイル
+dset = read_rds("filename.rds")   # R オブジェクトファイル
+```
+
+```{r}
+#| eval: false
+# ファイルの書き込み。文字のエンコーディングは UTF-8 です。
+write_tsv(dset, "filename.txt")         # タブ区切りの txt ファイル
+write_csv(dset, "filename.csv")         # コンマ区切りの csv ファイル
+write_excel_csv(dset, "filename.csv")   # Excel用 コンマ区切りの csv ファイル
+write_rds(dset, "filename.rds")         # R オブジェクトファイル
+```
+
+
+
+
+
+
+
+
+
+資料は自由に使ってください (MIT License)。
+サイトは [Quarto]() で作成しました。
+
+
+

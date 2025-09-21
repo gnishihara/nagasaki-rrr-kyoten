@@ -1,0 +1,33 @@
+project:
+  type: website
+
+website:
+  title: "水産海洋データ解析演習I・II"
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - text: Home
+        href: index.qmd
+      - text: サイトについて 
+        href: about.qmd
+      - section: "基礎"
+        contents:
+          - kiso/01-assignment.qmd
+          - kiso/02-fundamentals.qmd
+          - kiso/03-objects.qmd
+          - kiso/04-vector.qmd
+          - kiso/05-functions.qmd
+      - section: "tidyverse"
+        contents:
+          - tidyverse/01-about.qmd
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+

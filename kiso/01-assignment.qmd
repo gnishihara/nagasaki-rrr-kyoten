@@ -1,0 +1,40 @@
+---
+title: "代入演算子"
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| include: false
+
+library(tidyverse)
+library(magick)
+library(fontawesome)
+```
+
+## 代入演算子 (assignment operator) とベクトル (vector) とは
+
+
+* 代入は `=` か `<-` {{< kbd alt-- >}} です。伝統的に使われる代入は `<-` ですが、私は `=` を使っています。
+* 左辺は変数名、右辺は値です。
+
+```{r}
+a = 4.2
+b <- 5.0
+```
+
+`a` に入れた値を見るには次のようにコードを実行しましょう。
+
+```{r}
+a
+```
+
+`b` の内容も同じようにみれます。
+
+```{r}
+b
+```
+
+
+
