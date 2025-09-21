@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.22">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>オブジェクトへの代入 – 水産海洋データ解析演習I・II</title>
+<title>tidyverseについて – 水産海洋データ解析演習I・II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,14 +67,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9470711de48bb5f9234c6896081a6c67.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-81907348be4d4a5d12dba001a5b3f1df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -116,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/03-objects.html">オブジェクトへの代入</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverseについて</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,9 +133,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">水産海洋データ解析演習I・II</a> 
-    </div>
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -176,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../kiso/03-objects.html" class="sidebar-item-text sidebar-link active">
+  <a href="../kiso/03-objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">オブジェクトへの代入</span></a>
   </div>
 </li>
@@ -205,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tidyverse/01-about.html" class="sidebar-item-text sidebar-link">
+  <a href="../tidyverse/01-about.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">tidyverseについて</span></a>
   </div>
 </li>
@@ -221,9 +223,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#オブジェクトへの代入" id="toc-オブジェクトへの代入" class="nav-link active" data-scroll-target="#オブジェクトへの代入">オブジェクトへの代入</a></li>
-  <li><a href="#オブジェクトの利用" id="toc-オブジェクトの利用" class="nav-link" data-scroll-target="#オブジェクトの利用">オブジェクトの利用</a></li>
-  <li><a href="#オブジェクト名のルール" id="toc-オブジェクト名のルール" class="nav-link" data-scroll-target="#オブジェクト名のルール">オブジェクト名のルール</a></li>
+  <li><a href="#tidyverse-の哲学タイディデータ" id="toc-tidyverse-の哲学タイディデータ" class="nav-link active" data-scroll-target="#tidyverse-の哲学タイディデータ"><code>tidyverse</code> の哲学：「タイディデータ」</a></li>
+  <li><a href="#tidyverse-の主要なパッケージたち" id="toc-tidyverse-の主要なパッケージたち" class="nav-link" data-scroll-target="#tidyverse-の主要なパッケージたち"><code>tidyverse</code> の主要なパッケージたち</a></li>
+  <li><a href="#魔法のパイプ演算子-または" id="toc-魔法のパイプ演算子-または" class="nav-link" data-scroll-target="#魔法のパイプ演算子-または">魔法のパイプ演算子 <code>%&gt;%</code> または <code>|&gt;</code></a></li>
+  <li><a href="#tidyverse-のインストールと使い方" id="toc-tidyverse-のインストールと使い方" class="nav-link" data-scroll-target="#tidyverse-のインストールと使い方"><code>tidyverse</code> のインストールと使い方</a></li>
   <li><a href="#演習" id="toc-演習" class="nav-link" data-scroll-target="#演習">演習</a></li>
   </ul>
 </nav>
@@ -231,9 +234,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/03-objects.html">オブジェクトへの代入</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverse</a></li><li class="breadcrumb-item"><a href="../tidyverse/01-about.html">tidyverseについて</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">オブジェクトへの代入</h1>
+<h1 class="title">tidyverseについて</h1>
 </div>
 
 
@@ -250,72 +253,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>前回のレッスンでは、Rを電卓のように使って計算を行いました。 しかし、計算結果をその場で確認するだけでは、その結果を次の計算で使うことができず不便です。</p>
-<p>そこで登場するのがオブジェクトです。 オブジェクトとは、数値や計算結果、さらにはデータセット全体に名前をつけて保存しておくための「箱」のようなものです。 このプロセスを代入と呼びます。</p>
-<section id="オブジェクトへの代入" class="level2">
-<h2 class="anchored" data-anchor-id="オブジェクトへの代入">オブジェクトへの代入</h2>
-<p>Rでは、<code>&lt;-</code> という矢印のような記号（代入演算子と呼ばれます）を使って、オブジェクトに値を代入します。</p>
-<p><strong>基本の形：</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>オブジェクト名 <span class="ot">&lt;-</span> 値</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `x` という名前のオブジェクトに `10` を代入する</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># `y` という名前のオブジェクトに `5 + 3` の計算結果を代入する</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>&lt;-</code> は、<code>&lt;</code> と <code>-</code> を組み合わせて入力します。 RStudioでは、ショートカットキー Alt + - (Windows/Linux) または Option + - (Mac) で簡単に入力できます。</p>
-<p>代入を実行しても、コンソールには何も表示されません。 しかし、RStudioの右上にある Environment タブに、作成されたオブジェクト <code>x</code> と <code>y</code> が表示されているはずです。 これは、オブジェクトが R の記憶領域に正しく保存されたことを意味します。</p>
-</section>
-<section id="オブジェクトの利用" class="level2">
-<h2 class="anchored" data-anchor-id="オブジェクトの利用">オブジェクトの利用</h2>
-<p>一度オブジェクトに値を代入すれば、そのオブジェクト名を計算式の中で使うことができます。 Rはオブジェクト名をその中身の値として解釈してくれます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 上で作成した `x` と `y` を使って計算する</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 18</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 80</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算結果を新しいオブジェクト `z` に代入する</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>オブジェクトの中身を確認したいときは、オブジェクト名だけをスクリプトに書いて実行します。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># オブジェクト `z` の中身を表示する</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 18</code></pre>
-</div>
-</div>
-<p>コンソールに z の中身である 18 が表示されます。</p>
-</section>
-<section id="オブジェクト名のルール" class="level2">
-<h2 class="anchored" data-anchor-id="オブジェクト名のルール">オブジェクト名のルール</h2>
-<p>オブジェクト名には、好きな名前をつけることができますが、いくつかのルールと推奨される慣習があります。</p>
-<p><strong>ルール（必須）：</strong></p>
+<p>これまでは、Rに元々備わっている基本的な機能（Base Rと呼ばれます）を学んできました。 しかし、実際のデータ分析では、より効率的で直感的なツールが求められます。</p>
+<p>そこで登場するのが <code>tidyverse</code> です。 <code>tidyverse</code> は単一のパッケージではなく、データサイエンスのために設計されたRパッケージの集合体です。 データ分析の一連の作業（読み込み、整形、可視化など）を、一貫した哲学のもとでスムーズに行えるように作られています。</p>
+<p><code>tidyverse</code> は、データ分析のための洗練された「道具箱」や「作業場」だと考えてください。 個々のツールが強力なだけでなく、互いに連携しやすいように設計されています。</p>
+<section id="tidyverse-の哲学タイディデータ" class="level2">
+<h2 class="anchored" data-anchor-id="tidyverse-の哲学タイディデータ"><code>tidyverse</code> の哲学：「タイディデータ」</h2>
+<p><code>tidyverse</code> の中心には、タイディデータ (Tidy Data) という考え方があります。 これは、データを整理するためのシンプルなルールです。</p>
 <ul>
-<li>アルファベット、数字、<code>.</code>（ドット）、<code>_</code>（アンダースコア）が使えます。</li>
-<li>ただし、名前の先頭を数字や <code>.</code> の直後に数字が来る形にすることはできません。（例：<code>2x</code> や <code>.2x</code> はNG）</li>
-<li><code>T</code>, <code>F</code>, <code>c</code>, <code>q</code> など、Rであらかじめ特別な意味を持つ単語（予約語）は避けるべきです。</li>
+<li>各変数は、それ自身の列を持つ。</li>
+<li>各観測は、それ自身の行を持つ。</li>
+<li>各タイプの観測ユニットは、それ自身のテーブルを持つ。</li>
 </ul>
-<p><strong>慣習（推奨）：</strong></p>
+<p>この一貫したデータ形式に整えることで、<code>tidyverse</code> の各ツールをスムーズに連携させることができるのです。</p>
+</section>
+<section id="tidyverse-の主要なパッケージたち" class="level2">
+<h2 class="anchored" data-anchor-id="tidyverse-の主要なパッケージたち"><code>tidyverse</code> の主要なパッケージたち</h2>
+<p><code>tidyverse</code> をインストールすると、データ分析で頻繁に使われる多くの便利パッケージが一度に利用可能になります。 ここでは特に重要なものをいくつか紹介します。</p>
 <ul>
-<li>名前は小文字で始める。</li>
-<li>複数の単語をつなげる場合は、<code>_</code> で区切る（スネークケース）。例：<code>my_data</code></li>
-<li>オブジェクトの中身がわかるような、意味のある名前をつける。例：<code>x</code> よりも <code>test_score</code> の方が分かりやすい。</li>
+<li><code>dplyr</code> : データ操作の「動詞」集です。<code>filter()</code>（行の絞り込み）、<code>select()</code>（列の選択）、<code>mutate()</code>（新しい列の作成）、<code>arrange()</code>（並べ替え）、<code>summarise()</code>（要約）といった直感的な関数で、データを自在に操れます。</li>
+<li><code>ggplot2</code>: Rで最も有名で強力なデータ可視化パッケージです。「グラフィックスの文法」という考え方に基づいており、単純なグラフから非常に複雑で美しいグラフまで、柔軟に作成できます。</li>
+<li><code>readr</code>: CSVファイルなどの表形式データを高速かつ正確に読み込むためのパッケージです。Base Rの関数よりも使いやすく、安定しています。</li>
+<li><code>tidyr</code>: データを「タイディな」形式に整形するためのパッケージです。列と行の形式を変換する <code>pivot_longer()</code> や <code>pivot_wider()</code> などの関数を提供します。</li>
+<li><code>stringr</code>: 文字列（テキストデータ）の操作を簡単にするためのパッケージです。</li>
 </ul>
+</section>
+<section id="魔法のパイプ演算子-または" class="level2">
+<h2 class="anchored" data-anchor-id="魔法のパイプ演算子-または">魔法のパイプ演算子 <code>%&gt;%</code> または <code>|&gt;</code></h2>
+<p><code>tidyverse</code> のコードを特徴づけるのが、パイプ演算子 <code>%&gt;%</code> です。 これは、左側の処理結果を、右側の関数の最初の引数として渡す役割をします。</p>
+<p>R のネイティブのパイプは <code>|&gt;</code> ですが、どちらでも似たような使い方です。</p>
+<p>これにより、複数の処理を上から下、左から右へと、まるで文章を読むように繋げて書くことができます。</p>
+<p><code>%&gt;%</code> はショートカットキー <kbd title="ctrl-shift-m" aria-hidden="true">ctrl-shift-m</kbd><span class="visually-hidden">ctrl-shift-m</span> (Windows/Linux) または <kbd title="cmd-shift-m" aria-hidden="true">cmd-shift-m</kbd><span class="visually-hidden">cmd-shift-m</span> (Mac) で簡単に入力できます。</p>
+<p><strong>パイプを使わない場合</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># diamondsデータセットから、カットが "Premium" のものを抜き出し、</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># その価格の平均を計算する</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">filter</span>(diamonds, cut <span class="sc">==</span> <span class="st">"Premium"</span>), <span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_price
+       &lt;dbl&gt;
+1      4584.</code></pre>
+</div>
+</div>
+<p>このように、関数の内側に入れ子構造で書いていくため、処理が複雑になると読みにくくなります。</p>
+<p><strong>パイプ <code>%&gt;%</code> を使った場合</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 上と全く同じ処理</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cut <span class="sc">==</span> <span class="st">"Premium"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_price
+       &lt;dbl&gt;
+1      4584.</code></pre>
+</div>
+</div>
+<p><code>diamonds</code> データセットを、次に <code>filter</code> し、次に <code>summarise</code> する、という処理の流れが非常に分かりやすくなります。</p>
+</section>
+<section id="tidyverse-のインストールと使い方" class="level2">
+<h2 class="anchored" data-anchor-id="tidyverse-のインストールと使い方"><code>tidyverse</code> のインストールと使い方</h2>
+<p>tidyverse を使うには、まず一度だけインストール作業が必要です。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 一度だけ実行すればOK</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>インストールが終わったら、Rのセッションを開始するたびに、<code>library()</code> 関数を使って <code>tidyverse</code> の道具箱を使えるように準備します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rスクリプトの冒頭で毎回実行する</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="演習" class="level2">
 <h2 class="anchored" data-anchor-id="演習">演習</h2>
 <ol type="1">
-<li><code>width</code> という名前のオブジェクトに <code>20</code> を、<code>height</code> という名前のオブジェクトに <code>10</code> を代入してください。</li>
-<li><code>width</code> と <code>height</code> を使って長方形の面積を計算し、その結果を <code>area</code> という名前の新しいオブジェクトに代入してください。</li>
-<li>最後に、<code>area</code> オブジェクトの中身をコンソールに表示させてください。</li>
+<li>まだインストールしていない場合は、<code>tidyverse</code> をインストールしてください。</li>
+<li><code>library(tidyverse)</code> を実行して、パッケージを読み込んでください。</li>
+<li>Rに組み込まれている <code>iris</code> というデータセットがあります。パイプ演算子 <code>%&gt;%</code> を使って、以下の処理を一行で繋げて書いてみましょう。</li>
 </ol>
+<ul>
+<li><code>iris</code> データセットを使い、</li>
+<li><code>Species</code> が “setosa” の行だけを <code>filter()</code> で絞り込み、</li>
+<li>その <code>Sepal.Length</code>（がくの長さ）の平均値を <code>summarise()</code> で計算する。</li>
+</ul>
+<p>（ヒント：<code>summarise(mean_sepal_length = mean(Sepal.Length))</code> のように書きます）</p>
 
 
 </section>
@@ -372,13 +393,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

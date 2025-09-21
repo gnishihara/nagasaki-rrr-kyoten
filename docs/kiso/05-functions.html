@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.22">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>水産海洋データ解析演習の R コードについて – 水産海洋データ解析演習I・II</title>
+<title>R関数の使い方と作り方 – 水産海洋データ解析演習I・II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,23 +58,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9470711de48bb5f9234c6896081a6c67.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-81907348be4d4a5d12dba001a5b3f1df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/05-functions.html">R関数の使い方と作り方</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,9 +131,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">水産海洋データ解析演習I・II</a> 
-    </div>
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -143,13 +143,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">サイトについて</span></a>
   </div>
 </li>
@@ -164,31 +164,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kiso/01-assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../kiso/01-assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">代入演算子</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link">
+  <a href="../kiso/02-fundamentals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">基本的な操作</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kiso/03-objects.html" class="sidebar-item-text sidebar-link">
+  <a href="../kiso/03-objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">オブジェクトへの代入</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kiso/04-vector.html" class="sidebar-item-text sidebar-link">
+  <a href="../kiso/04-vector.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ベクトル・行列などの作り方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kiso/05-functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../kiso/05-functions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">R関数の使い方と作り方</span></a>
   </div>
 </li>
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse/01-about.html" class="sidebar-item-text sidebar-link">
+  <a href="../tidyverse/01-about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tidyverseについて</span></a>
   </div>
 </li>
@@ -221,16 +221,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link active" data-scroll-target="#quick-reference">Quick Reference</a></li>
+  <li><a href="#関数とは" id="toc-関数とは" class="nav-link active" data-scroll-target="#関数とは">関数とは？</a></li>
+  <li><a href="#関数の使い方" id="toc-関数の使い方" class="nav-link" data-scroll-target="#関数の使い方">関数の使い方</a></li>
+  <li><a href="#簡単な関数を作って使ってみよう" id="toc-簡単な関数を作って使ってみよう" class="nav-link" data-scroll-target="#簡単な関数を作って使ってみよう">簡単な関数を作って使ってみよう</a></li>
+  <li><a href="#引数のデフォルト値" id="toc-引数のデフォルト値" class="nav-link" data-scroll-target="#引数のデフォルト値">引数のデフォルト値</a></li>
+  <li><a href="#演習" id="toc-演習" class="nav-link" data-scroll-target="#演習">演習</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/05-functions.html">R関数の使い方と作り方</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">水産海洋データ解析演習の R コードについて</h1>
+<h1 class="title">R関数の使い方と作り方</h1>
 </div>
 
 
@@ -247,123 +251,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>このサイトは <a href="http://www-mri.fish.nagasaki-u.ac.jp/ja/kyoten/">水産海洋データ解析演習</a> のために準備しました。</p>
-<p>サイトの更新日は 09/09/2025 18:13:29 JST です。</p>
+<p>これまでは、<code>c()</code> や <code>matrix()</code> といったRにあらかじめ用意されている組み込み関数を使ってきました。 関数とは、特定の処理をひとまとめにした「道具」のようなものです。</p>
+<p>Rの素晴らしい点は、この「道具」を自分で作れることです。 同じような処理を何度も書く代わりに、一度だけ関数として定義しておけば、あとはその関数名を呼び出すだけで何度でも同じ処理を実行できます。 これにより、コードが整理され、間違いが減り、効率が劇的に向上します。</p>
+<section id="関数とは" class="level2">
+<h2 class="anchored" data-anchor-id="関数とは">関数とは？</h2>
+<p>関数は、一連の命令をまとめた再利用可能なコードブロックです。</p>
 <ul>
-<li>コードは考えずにコピペしないでください。</li>
-<li>コードに使用したデータは研究室のサーバにあるので公開していません。</li>
+<li>入力（引数 - “ひきすう” と読みます） を受け取り、</li>
+<li>決められた処理を実行し、</li>
+<li>出力（返り値 - “かえりち”） を返します。</li>
 </ul>
-<p><a href="https://cran.r-project.org/"><svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1.5em;width:1.7em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg></a> はここ <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> からダウンロードできます。 Windows ユーザは <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> もインストールすることをお勧めします。</p>
-<p><a href="https://posit.co/download/rstudio-desktop/">RStudio</a> もインストールしましょう。 R のデフォルトの IDE はとても使いにくいです。</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Session Information</strong></p>
+<p>自動販売機をイメージしてみてください。 「お金」と「ボタン」という入力に対して、「ジュースを出す」という処理を行い、「ジュース」という出力を返します。 これが関数の基本的な考え方です。</p>
+</section>
+<section id="関数の使い方" class="level2">
+<h2 class="anchored" data-anchor-id="関数の使い方">関数の使い方</h2>
+<p>Rで関数を自作するには、function() というキーワードを使います。</p>
+<p><strong>基本の形：</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>関数名 <span class="ot">&lt;-</span> <span class="cf">function</span>(引数1, 引数2, ...) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ここに実行したい処理を書く</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(最終的な結果) <span class="co"># return()で出力する値を指定</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>各部分の解説：</strong></p>
 <ul>
-<li>Platform: x86_64-pc-linux-gnu</li>
-<li>R version: Great Square Root (R version 4.5.1 (2025-06-13))</li>
+<li>関数名: あなたが作る関数につける名前です。オブジェクト名と同じルールで命名します。</li>
+<li><code>function(引数, ...)</code>: 関数を定義する宣言です。<code>()</code> の中に、この関数が受け取る入力（引数）の名前をカンマで区切って書きます。</li>
+<li><code>{ }</code>: この波括弧で囲まれた部分が、関数の本体です。実行したい処理をこの中に記述します。</li>
+<li><code>return(値)</code>: 関数の処理結果として何を返す（出力する）かを指定します。<code>return()</code> を書かなくても、最後に評価された値が自動的に返り値となりますが、コードを分かりやすくするために明示的に書くことが推奨されます。</li>
 </ul>
-<section id="quick-reference" class="level2">
-<h2 class="anchored" data-anchor-id="quick-reference">Quick Reference</h2>
-<p><strong>ヘルプ</strong></p>
+</section>
+<section id="簡単な関数を作って使ってみよう" class="level2">
+<h2 class="anchored" data-anchor-id="簡単な関数を作って使ってみよう">簡単な関数を作って使ってみよう</h2>
+<p><strong>2つの数値を足し算する関数</strong></p>
+<p><code>add_numbers</code> という名前で、<code>a</code> と <code>b</code> という2つの数値を引数として受け取り、その合計を返す関数を作ってみましょう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>?mean                          <span class="co"># mean() 関数のヘルプをみる</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"mean"</span>)            <span class="co"># 文字列で検索</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> <span class="st">"tidyverse"</span>)    <span class="co"># パッケージのヘルプをみる</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 関数の定義</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>ライブラリー (library)</strong></p>
+<p>このコードを実行しても、コンソールには何も表示されません。これは関数の「設計図」を作っただけで、まだ実行していないからです。 Environment タブに関数名 <code>add_numbers</code> が追加されていることを確認してください。</p>
+<p><strong>作成した関数の使い方：</strong></p>
+<p>関数を使うことを「呼び出す (call)」と言います。関数名を書き、<code>()</code> の中に具体的な値（引数）を入れて実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)   <span class="co"># CRANサーバからパッケージをインストールする</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作成した関数を呼び出す</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sum1 <span class="ot">&lt;-</span> <span class="fu">add_numbers</span>(<span class="at">a =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sum1 <span class="co"># 結果を表示</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
 </div>
-<p>一回インストールすればいいので、<code>install.packages()</code> は毎回する必要はない。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sum2 <span class="ot">&lt;-</span> <span class="fu">add_numbers</span>(<span class="dv">100</span>, <span class="dv">200</span>) <span class="co"># 引数名は省略してもOK</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sum2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 300</code></pre>
+</div>
+</div>
+</section>
+<section id="引数のデフォルト値" class="level2">
+<h2 class="anchored" data-anchor-id="引数のデフォルト値">引数のデフォルト値</h2>
+<p>引数には、あらかじめデフォルト値を設定しておくことができます。これにより、関数を呼び出す際に引数が指定されなかった場合に、そのデフォルト値が自動的に使われます。</p>
+<p><strong>挨拶をする関数</strong></p>
+<p>“Hello” という挨拶をデフォルトにしつつ、“Good morning” など他の挨拶も指定できるようにしてみましょう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)              <span class="co"># パッケージをライブラリーから読み込む</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nlstools<span class="sc">::</span><span class="fu">preview</span>()             <span class="co"># パッケージ内の関数を直接使う</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "greeting" 引数にデフォルト値を設定</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>greet <span class="ot">&lt;-</span> <span class="cf">function</span>(name, <span class="at">greeting =</span> <span class="st">"Hello"</span>) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  message <span class="ot">&lt;-</span> <span class="fu">paste</span>(greeting, name, <span class="at">sep =</span> <span class="st">", "</span>) <span class="co"># pasteは文字列を結合する関数</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(message)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># デフォルト値を使って呼び出す</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">greet</span>(<span class="at">name =</span> <span class="st">"Alice"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello, Alice"</code></pre>
 </div>
-<p><strong>プログラミング文の基礎</strong></p>
-<p><strong>for loop</strong></p>
-<pre><code>for (変数名 in シークエンス) {
-  繰り返し実行するコード
-}</code></pre>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  j <span class="ot">=</span> j <span class="sc">+</span> i</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(j)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># デフォルト値を上書きして呼び出す</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">greet</span>(<span class="at">name =</span> <span class="st">"Bob"</span>, <span class="at">greeting =</span> <span class="st">"Good morning"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Good morning, Bob"</code></pre>
 </div>
-<p><strong>while loop</strong></p>
-<pre><code>while(条件) {
-  繰り返し実行するコード
-}</code></pre>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i <span class="sc">&lt;=</span> <span class="dv">10</span>) {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>if else</strong></p>
-<pre><code>if(条件) {
-  コード
-} else {
-　条件を満たさないときのコード
-}</code></pre>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span>) </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">near</span>(x1 <span class="sc">+</span> x2, <span class="dv">7</span>)) {</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(x1, x2))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x1 <span class="sc">+</span> x2)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>条件判定</strong></p>
-<ul>
-<li><code>x == y</code> : x と y は等しい</li>
-<li><code>x != y</code> : x と y は等しくない</li>
-<li><code>x &gt; y</code> : x が y より大きい</li>
-<li><code>x &lt; y</code> : x が y より小さい</li>
-<li><code>x &gt;= y</code> : x が y 以上</li>
-<li><code>x &lt;= y</code> : x が y 以下</li>
-<li><code>is.na(x)</code> : x が欠損値である</li>
-<li><code>is.null(x)</code> : x が null 値である</li>
-<li><code>any(x %in% y)</code> : x が y に含まれる</li>
-</ul>
-<p><strong>function</strong></p>
-<pre><code>関数名 = function(変数1, 変数2, ...) {
-  コード
-}</code></pre>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> <span class="cf">function</span>(x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">=</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> na.rm)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(x))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  s <span class="sc">/</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>ファイルの入出力</strong></p>
-<p>研究室では、ファイルの入出力に <code>tidyverse</code>　パッケージの関数を使っています。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyerse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ファイルの読み込み</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dset <span class="ot">=</span> <span class="fu">read_table</span>(<span class="st">"filename.txt"</span>) <span class="co"># タブ・コンマ区切りのテキストファイル</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>dset <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"filename.csv"</span>)   <span class="co"># コンマ区切りの csv ファイル</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>dset <span class="ot">=</span> <span class="fu">read_rds</span>(<span class="st">"filename.rds"</span>)   <span class="co"># R オブジェクトファイル</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ファイルの書き込み。文字のエンコーディングは UTF-8 です。</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_tsv</span>(dset, <span class="st">"filename.txt"</span>)         <span class="co"># タブ区切りの txt ファイル</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(dset, <span class="st">"filename.csv"</span>)         <span class="co"># コンマ区切りの csv ファイル</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_excel_csv</span>(dset, <span class="st">"filename.csv"</span>)   <span class="co"># Excel用 コンマ区切りの csv ファイル</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(dset, <span class="st">"filename.rds"</span>)         <span class="co"># R オブジェクトファイル</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>資料は自由に使ってください (MIT License)。 サイトは <a href="">Quarto</a> で作成しました。</p>
+</section>
+<section id="演習" class="level2">
+<h2 class="anchored" data-anchor-id="演習">演習</h2>
+<ol type="1">
+<li>数値 <code>x</code> を引数として受け取り、その数値を2乗した結果を返す <code>square_number</code> という名前の関数を作成してください。</li>
+<li>作成した <code>square_number</code> 関数を使って、<code>15</code> を<code>2</code>乗した結果を求めてください。</li>
+<li>長方形の縦 <code>height</code> と横 <code>width</code> を引数として受け取り、その面積を計算して返す <code>calculate_rectangle_area</code> という関数を作成してください。 4.作成した <code>calculate_rectangle_area</code> 関数を使い、縦が <code>20</code>、横が <code>30</code> の長方形の面積を計算してください。</li>
+</ol>
 
 
 </section>
@@ -420,13 +395,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
