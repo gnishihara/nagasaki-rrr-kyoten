@@ -26,7 +26,7 @@
     "href": "ggplot2/01-about.html#ggplot2-での作図",
     "title": "作図について",
     "section": "ggplot2 での作図",
-    "text": "ggplot2 での作図\nggplot2 は、tidyverseの一部として提供されている、非常に強力で人気の高い作図パッケージです。「グラフィックスの文法 (Grammar of Graphics)」という一貫した哲学に基づいており、「グラフとは、データ、座標系、そして点や線といった図形要素（ジオメトリ）の組み合わせである」と考えます。\nLEGO ブロックのように、データ、エステティック (aesthetics) マッピング（変数をx軸、y軸、色、形などに割り当てる）、ジオメトリ (geometry) のパーツを + でつなぎ合わせてグラフを構築します。\nメリット\n\n一貫した文法: 一度文法を覚えれば、どんな種類のグラフでも同じ考え方で作成できます。\n美しい仕上がり: デフォルトでも洗練された美しいグラフが描画されます。\nデータ処理に強い: カテゴリごとの色分けや、グラフの分割（ファセット）が非常に簡単かつ直感的に行えます。\nコードの可読性が高い: 複雑なグラフでも、処理のレイヤーが + で繋がっているためコードが読みやすいです。\n\nデメリット\n\nパッケージの読み込みが必要: library(ggplot2) または library(tidyverse) が必要です。\n初期学習コスト aes()やgeom_\\*()といった独自の「文法」を最初に学ぶ必要があります。\n単純なグラフには少し冗長: ごく単純なグラフを1つだけ描きたい場合、Base R よりコードが長くなることもあります。\n\n\nlibrary(ggplot2)\n# 同じ散布図をggplot2で描く\nggplot(data = cars, aes(x = speed, y = dist)) +\n  geom_point(color = \"blue\", size = 3) +\n  labs(\n    title = \"車の速度と停止距離 (ggplot2)\",\n    x = \"速度 (mph)\",\n    y = \"停止距離 (ft)\"\n  ) +\n  theme_minimal()",
+    "text": "ggplot2 での作図\nggplot2 は、tidyverseの一部として提供されている、非常に強力で人気の高い作図パッケージです。「グラフィックスの文法 (Grammar of Graphics)」という一貫した哲学に基づいており、「グラフとは、データ、座標系、そして点や線といった図形要素（ジオメトリ）の組み合わせである」と考えます。\nLEGO ブロックのように、データ、エステティック (aesthetics) マッピング（変数をx軸、y軸、色、形などに割り当てる）、図形 (geometry) のパーツを + でつなぎ合わせてグラフを構築します。\nメリット\n\n一貫した文法: 一度文法を覚えれば、どんな種類のグラフでも同じ考え方で作成できます。\n美しい仕上がり: デフォルトでも洗練された美しいグラフが描画されます。\nデータ処理に強い: カテゴリごとの色分けや、グラフの分割（ファセット）が非常に簡単かつ直感的に行えます。\nコードの可読性が高い: 複雑なグラフでも、処理のレイヤーが + で繋がっているためコードが読みやすいです。\n\nデメリット\n\nパッケージの読み込みが必要: library(ggplot2) または library(tidyverse) が必要です。\n初期学習コスト aes()やgeom_\\*()といった独自の「文法」を最初に学ぶ必要があります。\n単純なグラフには少し冗長: ごく単純なグラフを1つだけ描きたい場合、Base R よりコードが長くなることもあります。\n\n\nlibrary(ggplot2)\n# 同じ散布図をggplot2で描く\nggplot(data = cars, aes(x = speed, y = dist)) +\n  geom_point(color = \"blue\", size = 3) +\n  labs(\n    title = \"車の速度と停止距離 (ggplot2)\",\n    x = \"速度 (mph)\",\n    y = \"停止距離 (ft)\"\n  ) +\n  theme_minimal()",
     "crumbs": [
       "作図 (ggplot2)",
       "作図について"
@@ -631,6 +631,61 @@
     "crumbs": [
       "tidyverse",
       "データの読み書き"
+    ]
+  },
+  {
+    "objectID": "ggplot2/10-points.html",
+    "href": "ggplot2/10-points.html",
+    "title": "散布図",
+    "section": "",
+    "text": "ggplot2 で作図する際の基本は、レイヤー（層）を + で重ねていくことです。 まずは、最も基本的なグラフである散布図を作成し、その過程で ggplot2 の「文法」に慣れていきましょう。\nここでは、R に組み込まれている iris （アヤメ）のデータセットを使います。 このデータには、がくの長さ(Sepal.Length)、がくの幅(Sepal.Width)、花びらの長さ(Petal.Length)、花びらの幅(Petal.Width)、そして品種(Species)の情報が含まれています。",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "散布図"
+    ]
+  },
+  {
+    "objectID": "ggplot2/10-points.html#ggplot2-の基礎geom_point-で散布図を描く",
+    "href": "ggplot2/10-points.html#ggplot2-の基礎geom_point-で散布図を描く",
+    "title": "散布図",
+    "section": "",
+    "text": "ggplot2 で作図する際の基本は、レイヤー（層）を + で重ねていくことです。 まずは、最も基本的なグラフである散布図を作成し、その過程で ggplot2 の「文法」に慣れていきましょう。\nここでは、R に組み込まれている iris （アヤメ）のデータセットを使います。 このデータには、がくの長さ(Sepal.Length)、がくの幅(Sepal.Width)、花びらの長さ(Petal.Length)、花びらの幅(Petal.Width)、そして品種(Species)の情報が含まれています。",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "散布図"
+    ]
+  },
+  {
+    "objectID": "ggplot2/10-points.html#図の骨格を作る",
+    "href": "ggplot2/10-points.html#図の骨格を作る",
+    "title": "散布図",
+    "section": "図の骨格を作る",
+    "text": "図の骨格を作る\nggplot2 での作図は、以下の3つの基本要素から始まります。\n\nggplot(): グラフのキャンバスを用意し、使用するデータを指定します。\naes(): エステティック (aesthetics) の略で、データ内のどの変数を、グラフのどの視覚的要素（x軸、y軸、色、形など）に対応させるかを指定します。\ngeom_\\*(): 図形 (geometry) の略で、どのような形のグラフを描くか（点、線、棒など）を指定します。今回は点プロットなので geom_point() を使います。\n\nこれらを + で繋げて、がくの長さと幅の関係を見てみましょう。\n\nggplot(data = iris, \n       aes(\n         x = Sepal.Length, \n         y = Sepal.Width)) +\n  geom_point()\n\n\n\n\n\n\n\n\n##　aes() で色分けする\nggplot2 の真価は、データの変数に基づいて自動で視覚的属性を割り当てられる点にあります。 aes() の中で color = Species と指定するだけで、iris の品種 (Species) ごとに自動で点の色分けと凡例の作成が行われます。\n\nggplot(data = iris, \n       aes(\n         x = Sepal.Length, \n         y = Sepal.Width, \n         color = Species)) +\n  geom_point()",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "散布図"
+    ]
+  },
+  {
+    "objectID": "ggplot2/10-points.html#aes-で形やサイズも変える",
+    "href": "ggplot2/10-points.html#aes-で形やサイズも変える",
+    "title": "散布図",
+    "section": "aes() で形やサイズも変える",
+    "text": "aes() で形やサイズも変える\n同様に、shape (形) や size (大きさ) などの属性も aes() の中で指定できます。\n\nggplot(data = iris, \n       aes(\n         x = Sepal.Length, \n         y = Sepal.Width, \n         color = Species, \n         shape = Species)) +\n  geom_point(size = 3) # 点の基本サイズを少し大きくする",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "散布図"
+    ]
+  },
+  {
+    "objectID": "ggplot2/10-points.html#全体の色や透明度を固定する",
+    "href": "ggplot2/10-points.html#全体の色や透明度を固定する",
+    "title": "散布図",
+    "section": "全体の色や透明度を固定する",
+    "text": "全体の色や透明度を固定する\nもし、データに応じて色を変えるのではなく、すべての点の色を特定の色に固定したい場合は、aes() の外で指定します。これは ggplot2 を使う上で非常に重要なルールです。\nalpha は透明度を指定する属性で、0 (完全に透明) から 1 (完全に不透明) の間の値を指定します。点が重なっている場合に有効です。\n\nggplot(data = iris, \n       aes(\n         x = Sepal.Length, \n         y = Sepal.Width)) +\n  geom_point(\n    color = \"blue\",\n    size = 3, \n    alpha = 0.5)",
+    "crumbs": [
+      "作図 (ggplot2)",
+      "散布図"
     ]
   }
 ]

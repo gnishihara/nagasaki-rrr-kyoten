@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R関数の使い方と作り方 – 水産海洋データ解析演習I・II</title>
+<title>散布図 – 水産海洋データ解析演習I・II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/05-functions.html">R関数の使い方と作り方</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ggplot2/01-about.html">作図 (ggplot2)</a></li><li class="breadcrumb-item"><a href="../ggplot2/10-points.html">散布図</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../kiso/05-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="../kiso/05-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R関数の使い方と作り方</span></a>
   </div>
 </li>
@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ggplot2/10-points.html" class="sidebar-item-text sidebar-link">
+  <a href="../ggplot2/10-points.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">散布図</span></a>
   </div>
 </li>
@@ -262,20 +262,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#関数とは" id="toc-関数とは" class="nav-link active" data-scroll-target="#関数とは">関数とは？</a></li>
-  <li><a href="#関数の使い方" id="toc-関数の使い方" class="nav-link" data-scroll-target="#関数の使い方">関数の使い方</a></li>
-  <li><a href="#簡単な関数を作って使ってみよう" id="toc-簡単な関数を作って使ってみよう" class="nav-link" data-scroll-target="#簡単な関数を作って使ってみよう">簡単な関数を作って使ってみよう</a></li>
-  <li><a href="#引数のデフォルト値" id="toc-引数のデフォルト値" class="nav-link" data-scroll-target="#引数のデフォルト値">引数のデフォルト値</a></li>
-  <li><a href="#演習" id="toc-演習" class="nav-link" data-scroll-target="#演習">演習</a></li>
+  <li><a href="#ggplot2-の基礎geom_point-で散布図を描く" id="toc-ggplot2-の基礎geom_point-で散布図を描く" class="nav-link active" data-scroll-target="#ggplot2-の基礎geom_point-で散布図を描く"><code>ggplot2</code> の基礎：<code>geom_point()</code> で散布図を描く</a></li>
+  <li><a href="#図の骨格を作る" id="toc-図の骨格を作る" class="nav-link" data-scroll-target="#図の骨格を作る">図の骨格を作る</a></li>
+  <li><a href="#aes-で形やサイズも変える" id="toc-aes-で形やサイズも変える" class="nav-link" data-scroll-target="#aes-で形やサイズも変える"><code>aes()</code> で形やサイズも変える</a></li>
+  <li><a href="#全体の色や透明度を固定する" id="toc-全体の色や透明度を固定する" class="nav-link" data-scroll-target="#全体の色や透明度を固定する">全体の色や透明度を固定する</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../kiso/01-assignment.html">基礎</a></li><li class="breadcrumb-item"><a href="../kiso/05-functions.html">R関数の使い方と作り方</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ggplot2/01-about.html">作図 (ggplot2)</a></li><li class="breadcrumb-item"><a href="../ggplot2/10-points.html">散布図</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">R関数の使い方と作り方</h1>
+<h1 class="title">散布図</h1>
 </div>
 
 
@@ -292,94 +291,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>これまでは、<code>c()</code> や <code>matrix()</code> といったRにあらかじめ用意されている組み込み関数を使ってきました。 関数とは、特定の処理をひとまとめにした「道具」のようなものです。</p>
-<p>Rの素晴らしい点は、この「道具」を自分で作れることです。 同じような処理を何度も書く代わりに、一度だけ関数として定義しておけば、あとはその関数名を呼び出すだけで何度でも同じ処理を実行できます。 これにより、コードが整理され、間違いが減り、効率が劇的に向上します。</p>
-<section id="関数とは" class="level2">
-<h2 class="anchored" data-anchor-id="関数とは">関数とは？</h2>
-<p>関数は、一連の命令をまとめた再利用可能なコードブロックです。</p>
+<section id="ggplot2-の基礎geom_point-で散布図を描く" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot2-の基礎geom_point-で散布図を描く"><code>ggplot2</code> の基礎：<code>geom_point()</code> で散布図を描く</h2>
+<p><code>ggplot2</code> で作図する際の基本は、レイヤー（層）を <code>+</code> で重ねていくことです。 まずは、最も基本的なグラフである散布図を作成し、その過程で <code>ggplot2</code> の「文法」に慣れていきましょう。</p>
+<p>ここでは、R に組み込まれている <code>iris</code> （アヤメ）のデータセットを使います。 このデータには、がくの長さ(<code>Sepal.Length</code>)、がくの幅(<code>Sepal.Width</code>)、花びらの長さ(<code>Petal.Length</code>)、花びらの幅(<code>Petal.Width</code>)、そして品種(<code>Species</code>)の情報が含まれています。</p>
+</section>
+<section id="図の骨格を作る" class="level2">
+<h2 class="anchored" data-anchor-id="図の骨格を作る">図の骨格を作る</h2>
+<p><code>ggplot2</code> での作図は、以下の3つの基本要素から始まります。</p>
 <ul>
-<li>入力（引数 - “ひきすう” と読みます） を受け取り、</li>
-<li>決められた処理を実行し、</li>
-<li>出力（返り値 - “かえりち”） を返します。</li>
+<li><code>ggplot()</code>: グラフのキャンバスを用意し、使用するデータを指定します。</li>
+<li><code>aes()</code>: エステティック (aesthetics) の略で、データ内のどの変数を、グラフのどの視覚的要素（x軸、y軸、色、形など）に対応させるかを指定します。</li>
+<li><code>geom_\*()</code>: 図形 (geometry) の略で、どのような形のグラフを描くか（点、線、棒など）を指定します。今回は点プロットなので <code>geom_point()</code> を使います。</li>
 </ul>
-<p>自動販売機をイメージしてみてください。 「お金」と「ボタン」という入力に対して、「ジュースを出す」という処理を行い、「ジュース」という出力を返します。 これが関数の基本的な考え方です。</p>
-</section>
-<section id="関数の使い方" class="level2">
-<h2 class="anchored" data-anchor-id="関数の使い方">関数の使い方</h2>
-<p>Rで関数を自作するには、function() というキーワードを使います。</p>
-<p><strong>基本の形：</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>関数名 <span class="ot">&lt;-</span> <span class="cf">function</span>(引数1, 引数2, ...) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ここに実行したい処理を書く</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(最終的な結果) <span class="co"># return()で出力する値を指定</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>各部分の解説：</strong></p>
-<ul>
-<li>関数名: あなたが作る関数につける名前です。オブジェクト名と同じルールで命名します。</li>
-<li><code>function(引数, ...)</code>: 関数を定義する宣言です。<code>()</code> の中に、この関数が受け取る入力（引数）の名前をカンマで区切って書きます。</li>
-<li><code>{ }</code>: この波括弧で囲まれた部分が、関数の本体です。実行したい処理をこの中に記述します。</li>
-<li><code>return(値)</code>: 関数の処理結果として何を返す（出力する）かを指定します。<code>return()</code> を書かなくても、最後に評価された値が自動的に返り値となりますが、コードを分かりやすくするために明示的に書くことが推奨されます。</li>
-</ul>
-</section>
-<section id="簡単な関数を作って使ってみよう" class="level2">
-<h2 class="anchored" data-anchor-id="簡単な関数を作って使ってみよう">簡単な関数を作って使ってみよう</h2>
-<p><strong>2つの数値を足し算する関数</strong></p>
-<p><code>add_numbers</code> という名前で、<code>a</code> と <code>b</code> という2つの数値を引数として受け取り、その合計を返す関数を作ってみましょう。</p>
+<p>これらを <code>+</code> で繋げて、がくの長さと幅の関係を見てみましょう。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 関数の定義</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> Sepal.Length, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-points_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>このコードを実行しても、コンソールには何も表示されません。これは関数の「設計図」を作っただけで、まだ実行していないからです。 Environment タブに関数名 <code>add_numbers</code> が追加されていることを確認してください。</p>
-<p><strong>作成した関数の使い方：</strong></p>
-<p>関数を使うことを「呼び出す (call)」と言います。関数名を書き、<code>()</code> の中に具体的な値（引数）を入れて実行します。</p>
+</div>
+</div>
+<p>##　<code>aes()</code> で色分けする</p>
+<p><code>ggplot2</code> の真価は、データの変数に基づいて自動で視覚的属性を割り当てられる点にあります。 <code>aes()</code> の中で <code>color = Species</code> と指定するだけで、<code>iris</code> の品種 (<code>Species</code>) ごとに自動で点の色分けと凡例の作成が行われます。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作成した関数を呼び出す</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sum1 <span class="ot">&lt;-</span> <span class="fu">add_numbers</span>(<span class="at">a =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">10</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sum1 <span class="co"># 結果を表示</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 15</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> Sepal.Length, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> Sepal.Width, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-points_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sum2 <span class="ot">&lt;-</span> <span class="fu">add_numbers</span>(<span class="dv">100</span>, <span class="dv">200</span>) <span class="co"># 引数名は省略してもOK</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sum2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 300</code></pre>
 </div>
 </div>
 </section>
-<section id="引数のデフォルト値" class="level2">
-<h2 class="anchored" data-anchor-id="引数のデフォルト値">引数のデフォルト値</h2>
-<p>引数には、あらかじめデフォルト値を設定しておくことができます。これにより、関数を呼び出す際に引数が指定されなかった場合に、そのデフォルト値が自動的に使われます。</p>
-<p><strong>挨拶をする関数</strong></p>
-<p>“Hello” という挨拶をデフォルトにしつつ、“Good morning” など他の挨拶も指定できるようにしてみましょう。</p>
+<section id="aes-で形やサイズも変える" class="level2">
+<h2 class="anchored" data-anchor-id="aes-で形やサイズも変える"><code>aes()</code> で形やサイズも変える</h2>
+<p>同様に、<code>shape</code> (形) や <code>size</code> (大きさ) などの属性も <code>aes()</code> の中で指定できます。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "greeting" 引数にデフォルト値を設定</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>greet <span class="ot">&lt;-</span> <span class="cf">function</span>(name, <span class="at">greeting =</span> <span class="st">"Hello"</span>) {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  message <span class="ot">&lt;-</span> <span class="fu">paste</span>(greeting, name, <span class="at">sep =</span> <span class="st">", "</span>) <span class="co"># pasteは文字列を結合する関数</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(message)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># デフォルト値を使って呼び出す</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">greet</span>(<span class="at">name =</span> <span class="st">"Alice"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Hello, Alice"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> Sepal.Length, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> Sepal.Width, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> Species, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">shape =</span> Species)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="co"># 点の基本サイズを少し大きくする</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-points_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># デフォルト値を上書きして呼び出す</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">greet</span>(<span class="at">name =</span> <span class="st">"Bob"</span>, <span class="at">greeting =</span> <span class="st">"Good morning"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Good morning, Bob"</code></pre>
 </div>
 </div>
 </section>
-<section id="演習" class="level2">
-<h2 class="anchored" data-anchor-id="演習">演習</h2>
-<ol type="1">
-<li>数値 <code>x</code> を引数として受け取り、その数値を2乗した結果を返す <code>square_number</code> という名前の関数を作成してください。</li>
-<li>作成した <code>square_number</code> 関数を使って、<code>15</code> を<code>2</code>乗した結果を求めてください。</li>
-<li>長方形の縦 <code>height</code> と横 <code>width</code> を引数として受け取り、その面積を計算して返す <code>calculate_rectangle_area</code> という関数を作成してください。 4.作成した <code>calculate_rectangle_area</code> 関数を使い、縦が <code>20</code>、横が <code>30</code> の長方形の面積を計算してください。</li>
-</ol>
+<section id="全体の色や透明度を固定する" class="level2">
+<h2 class="anchored" data-anchor-id="全体の色や透明度を固定する">全体の色や透明度を固定する</h2>
+<p>もし、データに応じて色を変えるのではなく、すべての点の色を特定の色に固定したい場合は、<code>aes()</code> の外で指定します。これは <code>ggplot2</code> を使う上で非常に重要なルールです。</p>
+<p><code>alpha</code> は透明度を指定する属性で、<code>0</code> (完全に透明) から <code>1</code> (完全に不透明) の間の値を指定します。点が重なっている場合に有効です。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> Sepal.Length, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-points_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
