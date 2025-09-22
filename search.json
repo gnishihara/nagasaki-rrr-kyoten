@@ -312,7 +312,7 @@
     "href": "index.html",
     "title": "水産海洋データ解析演習の R コードについて",
     "section": "",
-    "text": "このサイトは 水産海洋データ解析演習 のために準備しました。\nサイトの更新日は 09/22/2025 10:45:23 JST です。\nはここ https://cran.r-project.org/ からダウンロードできます。 Windows ユーザは Rtools もインストールすることをお勧めします。\nRStudio もインストールしましょう。 R のデフォルトの IDE はとても使いにくいです。\nSession Information",
+    "text": "このサイトは 水産海洋データ解析演習 のために準備しました。\nサイトの更新日は 09/22/2025 10:54:53 JST です。\nはここ https://cran.r-project.org/ からダウンロードできます。 Windows ユーザは Rtools もインストールすることをお勧めします。\nRStudio もインストールしましょう。 R のデフォルトの IDE はとても使いにくいです。\nSession Information",
     "crumbs": [
       "Home"
     ]
